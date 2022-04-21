@@ -64,7 +64,12 @@ $page_count = CEIL($total / $per_page);
                     <td><?= $row["expiry"] ?></td>
                     <td><?= $row["limited"] ?></td>
                     <td><?= $row["valid"] ?></td>
+                    <td><a class="btn btn-info text-white" href="form-post-edit.php?id=<?= $row["id"] ?>">修改</a></td>
+                    <td><a class="btn btn-danger" href="form-post-delete.php?id=<?= $row["id"] ?>">刪除</a></td>
+                    <td><a class="btn btn-info text-white" href="form-post-delete.php?id=<?= $row["id"] ?>">適用課程</a></td>
+                    <td><a class="btn btn-info text-white" href="form-post-delete.php?id=<?= $row["id"] ?>">適用商品</a></td>
                 </tr>
+
             <?php endforeach; ?>
         </tbody>
     </table>

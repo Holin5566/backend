@@ -18,7 +18,16 @@
     <div class="mb-2">
         <label for="inpit1">expiry</label>
         <div class="row">
-            <div class="col">
+            <div>
+                <label for="">開始使用</label>
+                <input type="date" name="date1">
+            </div>
+            <div>
+                <label for="">結束使用</label>
+                <input type="date" name="date2">
+            </div>
+
+            <!-- <div class="col">
                 <input type="text" id="startY" class="form-control" name="startY" placeholder="YYYY" required>年
             </div>
             <div class="col">
@@ -42,17 +51,17 @@
                 </div>
                 <div class="col">
                     <input type="text" id="endH" class="form-control" name="endH" placeholder="24H" required>時
-                </div>
+                </div> -->
 
-                <div class="mb-3">
-                    <label for="inpit1" class="form-label">litmited</label>
-                    <input type="text" class="form-control" name="limited" id="limited" placeholder="輸入">
-                </div>
+            <div class="mb-3">
+                <label for="inpit1" class="form-label">litmited</label>
+                <input type="text" class="form-control" name="limited" id="limited" placeholder="輸入">
+            </div>
 
 
 
-                <!-- 送出按鈕 -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-secondary btn-lg ">submit</button>
-                </div>
+            <!-- 送出按鈕 -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary btn-lg ">submit</button>
+            </div>
 </form>

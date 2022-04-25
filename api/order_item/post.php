@@ -17,7 +17,7 @@ $counter = $_POST["counter"];
 $memo = $_POST["memo"];
 
 
-$checkSql = "SELECT * FROM order_item WHERE order_info=$order_info AND product=$product ";
+$checkSql = "SELECT * FROM order_item WHERE order_info=$order_info AND product=$product AND class=$class ";
 $check = $conn->query($checkSql)->num_rows;
 if ($check > 0) {
   echo "資料已存在";

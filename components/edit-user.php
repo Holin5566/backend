@@ -22,7 +22,6 @@ $row = $result->fetch_assoc();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<<<<<<< HEAD
 </head>
 
 <body>
@@ -31,16 +30,7 @@ $row = $result->fetch_assoc();
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-4">
-                <form action="../components/update_user.php" method="post">
-=======
-  </head>
-  <body>
-      <?php //var_dump($row); ?>
-      <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-lg-4">
-                  <form action="../components/update-user.php" method="post">
->>>>>>> bd66bf2b7654531f511347bd87cac586bfa8c0ef
+                <form action="../components/update-user.php" method="post">
                     <table class="table table-bordered">
                         <input type="hidden" name="id" value="<?= $row["id"] ?>">
                         <tr>

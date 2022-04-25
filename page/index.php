@@ -27,11 +27,11 @@ if (isset($_GET["current"])) {
     <?php require_once("../layout/header.php") ?>
     <div class="container-fluid body px-0 ">
         <div class="row ">
-            <div class="col-2  px-0">
+            <div class="col-2  px-0 ">
 
                 <?php require_once("../layout/aside.php") ?>
             </div>
-            <div class="col-10 border-start p-3">
+            <div class="col-10 border-start p-3 ">
                 <?php require_once("./$currentPage" . ".php") ?>
             </div>
         </div>

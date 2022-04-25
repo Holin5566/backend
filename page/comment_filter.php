@@ -80,9 +80,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 $rows_num = $result->num_rows;
 $i = 1;
 
+$expressList = array("店內取", "常溫", "低溫")
 // var_dump($rows);
 ?>
 
+<style>
+.avatar {
+    width: 10rem;
+    height: 10rem;
+}
+</style>
 <!-- 篩選表單 -->
 <form class="mb-3" action="http://localhost:8080/project/page/index.php">
     <fieldset>
@@ -108,31 +115,40 @@ $i = 1;
 <!-- 篩選product -->
 <!-- 篩選product -->
 
+<style>
+</style>
 <?php if ($id_type == "product" & $id != "") : ?>
 <h5><strong>本次篩選結果:</strong></h5>
 
 <div class="mb-3"><a href="http://localhost:8080/project/page/index.php?id_type&id&current=comment_filter">清空本次條件</a>
 </div>
 <?php if ($rows_num > 0) : ?>
-<div class="card m-auto">
-    <div class="card-body">
-        <h5 class="card-title"><?= $rows[0]["data02"] ?> # <?= $rows[0]["data01"] ?></h5>
-        <p class="card-text"><?= $rows[0]["data03"] ?></p>
-        <p class="card-text"><?= $rows[0]["data04"] ?></p>
-        <p class="card-text"><?= $rows[0]["data05"] ?></p>
-        <p class="card-text"><?= $rows[0]["data06"] ?></p>
-        <p class="card-text"><?= $rows[0]["data07"] ?></p>
-        <p class="card-text"><?= $rows[0]["data07"] ?></p>
+<div class=" shadow m-3 row p-3 bg-white border">
+    <div class="col-3">
+        <figure class="figure">
+            <img src="../img/product/<?= $rows[0]["data02"] ?>.jpg"
+                class="figure-img img-fluid rounded-3 border border-3" alt="...">
+            <figcaption class="figure-caption">下單時間 : <?= $rows[0]["data05"] ?>
+            </figcaption>
+        </figure>
+    </div>
+    <div class="card-body col-6">
+        <h5 class="card-title mb-4">商品 : <?= $rows[0]["data02"] ?> # <?= $rows[0]["data01"] ?></h5>
+        <p class="card-text mb-2">價錢 : <span class="bg-light border px-3"> <?= $rows[0]["data03"] ?> </span></p>
+        <p class="card-text mb-2">配送方式 : <span class="bg-light border px-3"> <?= $expressList[$rows[0]["data04"]] ?></p>
+        <p class="card-text mb-2">商品描述 : <span class="bg-light border px-3"> <?= $rows[0]["data06"] ?></p>
+        <p class="card-text mb-2">商品庫存 : <span class="bg-light border px-3"> <?= $rows[0]["data07"] ?></p>
     </div>
 </div>
 <div class="row justify-content-around">
     <?php foreach ($rows as $row) : ?>
-    <div class="card p-3 my-3 col-5">
-        <div class="row g-0 align-items-center mb-3">
-            <div class="col-md-4 ">
-                <img src="../img/user/<?= $row["userPhoto"] ?>" class="img-fluid rounded border border-3" alt="..." />
+    <div class="card p-1 shadow my-3 col-5">
+        <div class="row g-0 align-items-center">
+            <div
+                class="avatar rounded-circle border border-3 col-4 overflow-hidden d-flex justify-content-center align-items-center">
+                <img src="../img/user/<?= $row["userPhoto"] ?>" class="w-100" alt="..." />
             </div>
-            <div class="col-md-8">
+            <div class="col">
                 <div class="card-body">
                     <p class="card-text mb-1">會員 : <?= $row["userName"] ?></p>
                     <p class="card-text mb-1"><strong>評價 : </strong>
@@ -143,16 +159,13 @@ $i = 1;
                                     ?>
                     </p>
                     <p class="card-text mb-2"><strong>評論 : </strong></p>
-                    <h5 class="card-title border p-2"><?= $row["content"] ?></h5>
-
+                    <h5 class="card-text border p-2 bg-light"><?= $row["content"] ?></h5>
+                    <div class="btn-group  mb-1 text-center" role="group" aria-label="Basic outlined example">
+                        <button type="button" class="btn btn-outline-primary">訂單</button>
+                        <button type="button" class="btn btn-outline-primary">收藏</button>
+                        <button type="button" class="btn btn-outline-primary">回報</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="btn-group  mb-1" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn btn-outline-primary">訂單</button>
-                <button type="button" class="btn btn-outline-primary">收藏</button>
-                <button type="button" class="btn btn-outline-primary">回報</button>
             </div>
         </div>
         <div class="row">

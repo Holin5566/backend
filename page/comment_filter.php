@@ -86,8 +86,8 @@ $expressList = array("店內取", "常溫", "低溫")
 
 <style>
 .avatar {
-    width: 10rem;
-    height: 10rem;
+    width: 6rem;
+    height: 6rem;
 }
 </style>
 <!-- 篩選表單 -->
@@ -119,11 +119,11 @@ $expressList = array("店內取", "常溫", "低溫")
 </style>
 <?php if ($id_type == "product" & $id != "") : ?>
 <h5><strong>本次篩選結果:</strong></h5>
-
+<p>篩選條件 : <?= $id_type ?> # <?= $id ?></p>
 <div class="mb-3"><a href="http://localhost:8080/project/page/index.php?id_type&id&current=comment_filter">清空本次條件</a>
 </div>
 <?php if ($rows_num > 0) : ?>
-<div class=" shadow m-3 row p-3 bg-white border">
+<div class=" shadow m-3 row p-3 bg-white border ">
     <div class="col-3">
         <figure class="figure">
             <img src="../img/product/<?= $rows[0]["data02"] ?>.jpg"
@@ -140,31 +140,35 @@ $expressList = array("店內取", "常溫", "低溫")
         <p class="card-text mb-2">商品庫存 : <span class="bg-light border px-3"> <?= $rows[0]["data07"] ?></p>
     </div>
 </div>
-<div class="row justify-content-around">
+<div class="row justify-content-around  ">
     <?php foreach ($rows as $row) : ?>
-    <div class="card p-1 shadow my-3 col-5">
-        <div class="row g-0 align-items-center">
+    <div class="card p-1 shadow my-3 col-5 py-3">
+        <div class="row g-0 align-items-start justify-content-center ">
             <div
                 class="avatar rounded-circle border border-3 col-4 overflow-hidden d-flex justify-content-center align-items-center">
                 <img src="../img/user/<?= $row["userPhoto"] ?>" class="w-100" alt="..." />
             </div>
             <div class="col">
-                <div class="card-body">
+                <div class="card-body py-0">
                     <p class="card-text mb-1">會員 : <?= $row["userName"] ?></p>
-                    <p class="card-text mb-1"><strong>評價 : </strong>
+                    <p class="card-text mb-1">評價 :
                         <?php
                                     for ($i = 0; $i < $row["score"]; $i++) {
                                         echo " 讚 ";
                                     }
                                     ?>
                     </p>
-                    <p class="card-text mb-2"><strong>評論 : </strong></p>
-                    <h5 class="card-text border p-2 bg-light"><?= $row["content"] ?></h5>
-                    <div class="btn-group  mb-1 text-center" role="group" aria-label="Basic outlined example">
-                        <button type="button" class="btn btn-outline-primary">訂單</button>
-                        <button type="button" class="btn btn-outline-primary">收藏</button>
-                        <button type="button" class="btn btn-outline-primary">回報</button>
-                    </div>
+                    <p class="card-text mb-2">評論 : </p>
+
+
+                </div>
+            </div>
+            <div class="row p-3">
+                <p class="card-text border p-2 bg-light px-3"><?= $row["content"] ?></p>
+                <div class="btn-group  mb-1 text-center" role="group" aria-label="Basic outlined example">
+                    <button type="button" class="btn btn-outline-primary">訂單</button>
+                    <button type="button" class="btn btn-outline-primary">收藏</button>
+                    <button type="button" class="btn btn-outline-primary">回報</button>
                 </div>
             </div>
         </div>

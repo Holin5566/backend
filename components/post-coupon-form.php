@@ -19,7 +19,7 @@
         <label for="inpit1">expiry</label>
         <div class="row">
             <div class="col">
-                開始 <input type="date" name="date1 " class="m-2 p-1 border-1 rounded-3">
+                開始 <input type="date" name="date1" class="m-2 p-1 border-1 rounded-3">
                 <br>
 
                 <div class="col">

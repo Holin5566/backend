@@ -7,7 +7,7 @@ $code = $_POST["code"];
 $discount = $_POST["discount"];
 // $expiry = $_POST["startY"] . "/" . $_POST["startM"] . "/" . $_POST["startD"] . "/" . $_POST["startH"] . "|" . $_POST["endY"] . "/" 
 // . $_POST["endM"] . "/" . $_POST["endD"] . "/" . $_POST["endH"];
-$expiry = $_POST["date1"] . "/" . $_POST["startH"] . "|" . $_POST["date2"] . "/" . $_POST["endH"];
+$expiry = $_POST["date1"] . "~" . $_POST["date2"];
 
 if (isset($_POST["limited"])) {
     $limited = $_POST["limited"];

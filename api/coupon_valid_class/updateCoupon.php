@@ -12,14 +12,9 @@ $sql="UPDATE coupon_valid_class SET coupon='$coupon', class='$class' WHERE id='$
 // echo $sql;
 if ($conn->query($sql) === TRUE) {
     echo "更新成功";
-    header("Refresh:1 ;url= /project/page/index.php?current=coupon_valid_class");
+    // header("Refresh:1 ;url= /project/page/index.php?current=coupon_valid_class");
     $conn->close();
 } else {
     echo "更新資料錯誤: " . $conn->error;
     exit;
 }
-
-
-
-
-?>

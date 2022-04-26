@@ -28,6 +28,10 @@ session_start();
         font-family: 'Noto Sans TC', sans-serif;
         /* font-family: 'Playfair Display', serif; */
     }
+
+    a {
+        text-decoration: none;
+    }
     </style>
 </head>
 

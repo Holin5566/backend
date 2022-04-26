@@ -2,14 +2,28 @@
 
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
+
+if (!isset($_GET["p"])) {
+    $p = 1;
+} else {
+    $p = $_GET["p"];
+}
+
+$per_page = 20;
+$start = ($p - 1) * $per_page;
 $sqlSELECT = "SELECT comment.*,product.name AS proName,user.name AS userName,product.id AS proId";
 $sqlFROM = "FROM comment,product,user";
-$sqlWHERE = "WHERE comment.product=product.id AND comment.user=user.id";
+$sqlWHERE = "WHERE comment.product=product.id AND comment.user=user.id LIMIT $start, $per_page";
 $sql = "$sqlSELECT $sqlFROM $sqlWHERE";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 $i = 1;
 
+$pageSql = "SELECT * FROM comment,product,user WHERE comment.product=product.id AND comment.user=user.id";
+//$sql = "SELECT *FROM order_info";
+$result = $conn->query($pageSql);
+$total = $result->num_rows;
+$page_count = CEIL($total / $per_page);
 // var_dump($rows);
 ?>
 <h2>評論一覽</h2>
@@ -42,8 +56,8 @@ $i = 1;
                 <button type="button" class="btn-sm btn-success"><a
                         href="../page/index.php?id_type=user&id=<?= $row["id"] ?>&current=comment_filter"
                         class="btn-sm btn-success">查看作者</a></button>
-                <button type="button" class="btn-sm btn-warning">隱藏</button>
-                <button type="button" class="btn-sm btn-danger">刪除</button>
+                <button type="button" class="btn-sm btn-danger "><a class="text-light"
+                        href="../api/comment/delete.php?id_type=id&id=<?= $row["id"] ?>">刪除</a></button>
             </td>
 
         </tr>
@@ -67,3 +81,12 @@ $i = 1;
 
 </table>
 </table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <?php for ($i = 1; $i <= $page_count; $i++) : ?>
+        <li class="page-item <?php if ($p == $i) echo "active"; ?> "><a class="page-link"
+                href="../page/index.php?current=comment&p=<?= $i ?>"><?= $i ?></a></li>
+        <?php endfor; ?>
+    </ul>
+</nav>
+<div class="text-center">共<?= $total ?>筆資料，<?= $page_count ?>頁</div>

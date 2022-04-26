@@ -25,7 +25,8 @@ VALUES ('$product_id', '$coupon_id')";
 
 if ($conn->query($sql) === TRUE) {
     $conn->close();
-    echo "<script>alert('新增資料完成!');location.href=document.referrer;</script>;";
+    // echo "<script>alert('新增資料完成!');location.href=document.referrer;</script>;";
+    echo "新增資料完成";
 } else {
     echo "新增資料錯誤: " . $conn->error;
     $conn->close();

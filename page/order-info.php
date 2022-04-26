@@ -77,7 +77,7 @@ $page_count = CEIL($total / $per_page);
                             href="../page/index.php?id_type=order_info&user&id=<?= $row["id"] ?>&current=order-item-filter">詳細</a>
                     </button>
                     <?php
-                        $edit_type = "edit-coupon";
+                        $edit_type = "edit-order-info";
                         require("../components/edit-modal.php") ?>
                     <!-- <a class="btn-sm btn-warning text-decoration-none text-white"  href="../components/edit_order_info.php?id=<//?=$row["id"]?>">編輯</a>  -->
                     <button class="btn-sm btn-danger text-white text-decoration-none">

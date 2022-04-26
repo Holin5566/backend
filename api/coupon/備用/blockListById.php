@@ -20,7 +20,6 @@ $sql = "UPDATE coupon SET name='$name', code='$code', discount='$discount', expi
 if ($conn->query($sql) === TRUE) {
     echo "更新成功";
     $conn->close();
-    echo "<script>alert('新增資料完成!');location.href=document.referrer;</script>;";
 } else {
     echo "更新資料錯誤: " . $conn->error;
     exit;

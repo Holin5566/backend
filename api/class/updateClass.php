@@ -15,14 +15,8 @@ $sql="UPDATE lessons SET name='$name', price='$price', description='$description
 // echo $sql;
 if ($conn->query($sql) === TRUE) {
     echo "更新成功";
-    header("Refresh:1 ;url= /project/page/index.php?current=class");
     $conn->close();
 } else {
     echo "更新資料錯誤: " . $conn->error;
     exit;
 }
-
-
-
-
-?>

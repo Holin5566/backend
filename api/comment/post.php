@@ -21,8 +21,9 @@ VALUES ('$user', '$product', '$content','$score','$createTime')
 ";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<script>alert('新增資料完成!');location.href=document.referrer;</script>;";
+    // echo "<script>alert('新增資料完成!');location.href=document.referrer;</script>;";
     // echo "<script>alert('新增資料完成!');</script>;";
+    echo "新增資料完成";
 } else {
     echo "新增資料錯誤: " . $conn->error;
 }

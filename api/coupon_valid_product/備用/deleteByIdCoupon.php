@@ -12,7 +12,8 @@ $sql = "DELETE FROM coupon_valid_product WHERE id='$id'";
 $result = $conn->query($sql);
 if ($conn->query($sql) === TRUE) {
     
-    echo "<script>alert('刪除資料成功!');location.href=document.referrer;</script>;";
+    echo "刪除資料成功!";
+    // echo "<script>alert('刪除資料成功!');location.href=document.referrer;</script>;";
 } else {
     echo "刪除失敗: " . $conn->error;
     exit;
@@ -20,5 +21,3 @@ if ($conn->query($sql) === TRUE) {
 
 
 $conn->close();
-
-?>

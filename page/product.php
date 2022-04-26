@@ -71,7 +71,7 @@ $launchedList = array("NO", "YES");
 </div>
 
 <?php $count = 1 ?>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col"></th>

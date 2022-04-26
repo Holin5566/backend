@@ -179,7 +179,7 @@ $user_count = $result->num_rows;
             <?php for ($i = 1; $i <= $page_count; $i++) : ?>
             <li class="page-item<?php
                             if ($i == $p) echo " active"; ?>"><a class="page-link"
-                    href="index.php?current=class&p=<?= $i ?>"><?= $i ?></a></li>
+                    href="index.php?current=class&p=<?= $i ?>&type=<?= $type ?>"><?= $i ?></a></li>
             <?php endfor; ?>
         </ul>
     </nav>

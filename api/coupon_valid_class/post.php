@@ -26,7 +26,7 @@ VALUES ('$coupon', '$class')
 
 if ($conn->query($sql) === TRUE) {
     echo "新增資料完成";
-    // header("Refresh:1 ;url= /project/page/index.php?current=coupon_valid_class");
+    header("Refresh:1 ;url= /project/page/index.php?current=coupon_valid_class");
 
 } else {
     echo "新增資料錯誤: " . $conn->error;

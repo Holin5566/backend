@@ -112,7 +112,7 @@ $user_count=$result->num_rows;
 </html>
 <table class="table table-striped table-hover my-3">
     <thead>
-        <tr class="no wrap">
+        <tr class="text-nowrap">
                 <th>編號</th>
                 <th>課程名稱</th>
                 <th>課程價格</th>
@@ -120,7 +120,7 @@ $user_count=$result->num_rows;
                 <th>課程日期</th>
                 <th>課程時長</th>
                 <th>Valid</th>
-                <th scope="col"><?php
+                <th scope="col"></?php
                             $title = "新增課程";
                             $formType = "post-class";
                             require("../components/post-offcanvas.php") ?></th>
@@ -147,8 +147,7 @@ $user_count=$result->num_rows;
           $edit_type = "edit-class";
           require("../components/edit-modal.php") ?>
                 <button class="btn-sm btn-danger">
-                    <a class="btn-sm btn-danger text-white"
-                        href="/project/api/class/delete_class.php?id=<?= $row["id"] ?>">刪除</a>
+                    <a class="btn-sm btn-danger text-white" href="/project/api/class/delete_class.php?id=<?= $row["id"] ?>">刪除</a>
                 </button>
             </td>
 

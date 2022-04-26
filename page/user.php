@@ -61,7 +61,7 @@ $validList = array("黑名單", "白名單")
             <td colspan="1" class="text-end">
                 <button type="button" class="btn-sm btn-info ">
                     <a class="text-white"
-                        href="http://localhost:8080/project/page/index.php?id_type=user&id=<?= $row["id"] ?>&current=user-favorite2">詳細資訊</a></button>
+                        href="http://localhost:8080/project/page/index.php?id_type=user&id=<?= $row["id"] ?>&current=user-favorite">詳細資訊</a></button>
                 <?php
                     $edit_type = "edit-coupon";
                     require("../components/edit-modal.php") ?>

@@ -6,7 +6,10 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
     $id = $_GET["id"];
     $sql = "SELECT coupon_valid_class. * ,
 lessons.name AS class_name,  
-coupon.name 
+coupon.name, 
+coupon.discount,
+coupon.code, 
+coupon.valid
 FROM coupon_valid_class,coupon,lessons
 WHERE coupon.id=coupon_valid_class.coupon 
 AND lessons.id=coupon_valid_class.class
@@ -14,7 +17,10 @@ AND $id_type = $id";
 }else{
 $sql = "SELECT coupon_valid_class. * ,
 lessons.name AS class_name,  
-coupon.name 
+coupon.name, 
+coupon.discount,
+coupon.code, 
+coupon.valid
  FROM coupon_valid_class,coupon,lessons
  WHERE coupon.id=coupon_valid_class.coupon 
 AND lessons.id=coupon_valid_class.class";
@@ -67,6 +73,9 @@ $conn->close();
         <tr>
             <th>編號</th>
             <th>Coupon</th>
+            <th>Code</th>
+            <th>Discount</th>
+            <th>Valid</th>
             <th>Class</th>
             <th>btn1</th>
             <th>btn2</th>
@@ -81,6 +90,9 @@ $conn->close();
         <tr>
             <th scope="row"><?= $row["id"] ?></th>
             <td><?= $row["name"] ?></td>
+            <td><?= $row["code"] ?></td>
+            <td><?= $row["discount"] ?>%</td>
+            <td><?= $row["valid"] ?></td>
             <td><?= $row["class_name"] ?></td>
             <td><a class="btn btn-sm btn-warning"
                     href="/project/api/coupon_valid_class/edit_coupon.php?id=<?= $row["id"] ?>">編輯</a></td>

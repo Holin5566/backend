@@ -1,7 +1,7 @@
-<div class="accordion accordion-flush" id="aside-menu">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="aside-product-title">
-            <button class="accordion-button collapsed ps-5 " type="button" data-bs-toggle="collapse"
+<div class="accordion accordion-flush " id="aside-menu">
+    <div class="accordion-item ">
+        <h2 class="accordion-header " id="aside-product-title">
+            <button class="accordion-button collapsed ps-5" type="button" data-bs-toggle="collapse"
                 data-bs-target="#aside-product-control" aria-expanded="false" aria-controls="aside-product-control">
                 商品管理
             </button>
@@ -10,29 +10,10 @@
             data-bs-parent="#aside-menu">
             <div class="accordion-body p-0 text-center ">
                 <ul class="list-group ">
-                    <li class="list-group-item"><a href="../page/index.php?current=product">商品一覽</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?current=product-card">圖片列表</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?current=comment">商品評論</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?id_type&id&current=comment_filter">評論篩選</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="aside-class-title">
-            <button class="accordion-button collapsed ps-5" type="button" data-bs-toggle="collapse"
-                data-bs-target="#aside-class-control" aria-expanded="false" aria-controls="aside-class-control">
-                課程管理
-            </button>
-        </h2>
-        <div id="aside-class-control" class="accordion-collapse collapse" aria-labelledby="aside-class-title"
-            data-bs-parent="#aside-menu">
-            <div class="accordion-body p-0 text-center">
-                <ul class="list-group">
+                    <li class="list-group-item"><a href="../page/index.php?current=product-card">商品一覽</a></li>
                     <li class="list-group-item"><a href="../page/index.php?current=class">課程一覽</a></li>
-                    <li class="list-group-item">課程評論</li>
+                    </li>
+                    <li class="list-group-item"><a href="../page/index.php?current=comment">評論一覽</a></li>
                 </ul>
             </div>
         </div>
@@ -48,9 +29,9 @@
             data-bs-parent="#aside-menu">
             <div class="accordion-body p-0 text-center">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="../page/index.php?current=user">會員一覽</a></li>
-                    <li class="list-group-item">會員訂單進度</li>
-                    <li class="list-group-item">會員評論</li>
+                    <li class="list-group-item"><a href="../page/index.php?current=user-card">會員一覽</a></li>
+                    <li class="list-group-item"><a
+                            href="../page/index.php?id_type=user&id=1&current=user-favorite">會員收藏</a> </li>
                 </ul>
             </div>
         </div>
@@ -77,7 +58,7 @@
     </div>
     <div class="accordion-item">
         <h2 class="accordion-header" id="aside-coupon-title">
-            <button class="accordion-button collapsed ps-5" type="button" data-bs-toggle="collapse"
+            <button class="accordion-button collapsed ps-5" type="button" data-bs-toggle="collapse" 5
                 data-bs-target="#aside-coupon-control" aria-expanded="false" aria-controls="aside-coupon-control">
                 優惠券管理
             </button>
@@ -86,10 +67,10 @@
             data-bs-parent="#aside-menu">
             <div class="accordion-body p-0 text-center">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon">優惠券一覽</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon-block">優惠券一覽(方塊)</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_product">優惠券篩選</a>
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_class">優惠券適用課程</a>
+                    <li class="list-group-item"><a href="../page/index.php?current=coupon-block">優惠券一覽</a></li>
+                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_product">優惠券適用商品</a>
+                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_class
+                            ">優惠券適用課程</a>
                     </li>
                 </ul>
             </div>

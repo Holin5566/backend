@@ -2,13 +2,20 @@
 require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 
 if (isset($_GET["id_type"]) && isset($_GET["id"])) {
-
-
-
-
     $id_type = $_GET["id_type"];
     $id = $_GET["id"];
-    $sql = "SELECT coupon_valid_product. * , 
+
+    $sql = "SELECT coupon_valid_product. * 
+     FROM product,coupon_valid_product,coupon 
+     WHERE coupon.id=coupon_valid_product.coupon_id 
+     AND product.id=coupon_valid_product.product_id AND $id_type=$id ";
+    $resultNumRows = $conn->query($sql);
+    $rowCount = $resultNumRows->num_rows;
+
+    if ($rowCount > 0) {
+        $id_type = $_GET["id_type"];
+        $id = $_GET["id"];
+        $sql = "SELECT coupon_valid_product. * , 
     -- 以什麼資料夾為基準↑
     product.name AS pro_name ,
     -- 因為coupon 與 product 兩個檔案有相同的name所以我設定product的name 變更為 pro_name
@@ -28,8 +35,14 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
     AND product.id=coupon_valid_product.product_id 
     -- 將這些資料合併的基準是什麼以上面的方式呈現
     AND $id_type=$id ";
-} else {
+        $result = $conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+    } else {
 
+        echo  "$id_type # $id 資料為空";
+        exit;
+    }
+} else {
     $id_type = "product_id";
     $id = 1;
     $sql = "SELECT coupon_valid_product. * , 
@@ -46,12 +59,11 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
     FROM product,coupon_valid_product,coupon 
     WHERE coupon.id=coupon_valid_product.coupon_id 
     AND product.id=coupon_valid_product.product_id  ";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
 }
 
 
-
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
 
 
 
@@ -107,80 +119,83 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
     </thead>
     <?php if (($id_type == "product_id")) : ?>
-        <!-- 如果是以商品篩選的話要做以下動作 -->
-        <ul class="list-group list-group-flush">
-            <li class="fw-bolder list-group-item ">商品名稱: <?= $rows[0]["pro_name"] ?></li>
-            <li class="fw-bolder list-group-item ">製造日期: <?= $rows[0]["createTime"] ?></li>
-            <li class="fw-bolder list-group-item ">庫存: <?= $rows[0]["inventory"] ?></li>
-            <li class="fw-bolder list-group-item ">價格: <?= $rows[0]["price"] ?></li>
-        </ul>
-        <div class="row col">
-            <h5 class="card-title"></h5>
-            <div class=" row">
-                <?php foreach ($rows as $row) : ?>
-                    <div class="card m-3" style="max-width: 500px">
-                        <div class="row g-0 align-items-center">
-                            <div class="col-md-4 ">
-                                <img src="../img/icon/coupon.png" class="img-fluid rounded-start" alt="..." />
-                            </div>
-                            <div class="col-md-8">
+    <!-- 如果是以商品篩選的話要做以下動作 -->
+    <ul class="list-group list-group-flush">
+        <li class="fw-bolder list-group-item ">商品名稱: <?= $rows[0]["pro_name"] ?></li>
+        <li class="fw-bolder list-group-item ">製造日期: <?= $rows[0]["createTime"] ?></li>
+        <li class="fw-bolder list-group-item ">庫存: <?= $rows[0]["inventory"] ?></li>
+        <li class="fw-bolder list-group-item ">價格: <?= $rows[0]["price"] ?></li>
+    </ul>
+    <div class="row col">
+        <h5 class="card-title"></h5>
+        <div class=" row">
+            <?php foreach ($rows as $row) : ?>
+            <div class="card m-3" style="max-width: 500px">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-4 ">
+                        <img src="../img/icon/coupon.png" class="img-fluid rounded-start" alt="..." />
+                    </div>
+                    <div class="col-md-8">
 
-                                <div class="card-body">
-                                    <h5 class="card-title"><strong>Coupon# <?= $row["id"] ?></strong></h5>
-                                    <p class="card-text mb-0"><span><strong>優惠券 :</strong></span><?= $row["name"] ?></p>
-                                    <p class="card-text mb-0"><span><strong>序號 : </strong></span><?= $row["code"] ?></p>
-                                    <p class="card-text mb-0"><span><strong>折扣% : </strong></span><?= $row["discount"] ?></p>
-                                    <p class="card-text mb-0"><span><strong>使用期限 : </strong></span></p>
-                                    <p><?= $row["expiry"] ?></p>
-                                    <p class="card-text mb-0"><span><strong>使用次數 : </strong></span><?= $row["limited"] ?></p>
-                                    <p class="card-text mb-0"><span><strong>啟用:</strong></span><?= $row["valid"] ?></p>
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>Coupon# <?= $row["id"] ?></strong></h5>
+                            <p class="card-text mb-0"><span><strong>優惠券 :</strong></span><?= $row["name"] ?></p>
+                            <p class="card-text mb-0"><span><strong>序號 : </strong></span><?= $row["code"] ?></p>
+                            <p class="card-text mb-0"><span><strong>折扣% : </strong></span><?= $row["discount"] ?></p>
+                            <p class="card-text mb-0"><span><strong>使用期限 : </strong></span></p>
+                            <p><?= $row["expiry"] ?></p>
+                            <p class="card-text mb-0"><span><strong>使用次數 : </strong></span><?= $row["limited"] ?></p>
+                            <p class="card-text mb-0"><span><strong>啟用:</strong></span><?= $row["valid"] ?></p>
 
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                    <button type="button" class="btn btn-outline-primary">
-                                        <a href="http://localhost:8080/project/api/coupon/備用/form-post-edit.php?id=<?= $row["id"] ?>">編輯</a></button>
-                                    <button type="button" class="btn btn-outline-primary">
-                                        <a href="http://localhost:8080/project/api/coupon/備用/form-post-delete.php?id=<?= $row["id"] ?>">刪除</a></button>
-
-                                </div>
-
-                            </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                    <div class="row mb-3">
+                        <div class="btn-group" role="group" aria-label="Basic outlined example">
+                            <button type="button" class="btn btn-outline-primary">
+                                <a
+                                    href="http://localhost:8080/project/api/coupon/備用/form-post-edit.php?id=<?= $row["id"] ?>">編輯</a></button>
+                            <button type="button" class="btn btn-outline-primary">
+                                <a
+                                    href="http://localhost:8080/project/api/coupon/備用/form-post-delete.php?id=<?= $row["id"] ?>">刪除</a></button>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
 
 
 
 
 
             <?php else : ?>
-                <h3><?= $rows[0]["name"] ?></h3>
-                <ul class="list-group list-group-flush">
-                    <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?></li>
-                    <li class="fw-bolder list-group-item">使用期限: <?= $rows[0]["expiry"] ?></li>
-                    <li class="fw-bolder list-group-item">使用次數: <?= $rows[0]["limited"] ?></li>
-                </ul>
-                <h3>商品類型</h3>
-                <div class="row col">
-                    <div class=" row">
-                        <?php foreach ($rows as $row) : ?>
-                            <div class="card m-4" style="width: 18rem;">
-                                <img class="card-img-top" src="../img/icon/barcode.png" alt="Card image cap">
+            <h3><?= $rows[0]["name"] ?></h3>
+            <ul class="list-group list-group-flush">
+                <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?> %</li>
+                <li class="fw-bolder list-group-item">使用期限: <?= $rows[0]["expiry"] ?></li>
+                <li class="fw-bolder list-group-item">使用次數: <?= $rows[0]["limited"] ?></li>
+            </ul>
+            <h3>商品類型</h3>
+            <div class="row col">
+                <div class=" row">
+                    <?php foreach ($rows as $row) : ?>
+                    <div class="card m-4" style="width: 18rem;">
+                        <img class="card-img-top w-100" src="../img/product/<?= $row["pro_name"] ?>.jpg"
+                            alt="<?= $row["pro_name"] ?>">
 
-                                <li class="">商品名稱: </li>
-                                <li class="list-group-item m-3"><?= $row["pro_name"] ?></li>
+                        <li class="">商品名稱: </li>
+                        <li class="list-group-item m-3"><?= $row["pro_name"] ?></li>
 
-                            </div>
-                        <?php endforeach; ?>
                     </div>
+                    <?php endforeach; ?>
                 </div>
-
-
             </div>
+
+
         </div>
-        </div>
+    </div>
+    </div>
     <?php endif; ?>
 
 </table>

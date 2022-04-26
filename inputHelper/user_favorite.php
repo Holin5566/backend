@@ -22,43 +22,41 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
 <script>
+// 禮盒 & 大甲芋泥奶茶千層蛋糕---------------------------------------------------------------------------------
+
 // 宣告 欲送出的 [key]
-let keys = ["user", "coupon", "delivery", "receipent", "address", "pay", "status", "valid", "deadline"]; //example
+let keys = ["user_id", "product_id", "class_id"]; //example
 //
 // 宣告 欲送出的 [value]
-let userValue = ["1", "2", '3', '4', '5', '6', '7', '8', '9', '10']; //example
-let couponValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //example
-let deliveryValue = ['mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'mail']; //example
-let receipentValue = ['coco', 'emily', 'michael', 'john', 'tim', 'justin', 'camille', 'janny', 'katrina',
-'rick']; //example
-let addressValue = ['taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting',
-    'taipei'
-]; //example
-let payValue = ['cash', 'credit card', 'cash', 'credit card', 'cash', 'credit card', 'cash', 'credit card', 'cash',
-    'credit card'
-]; //example
-let statusValue = ['received', 'received', 'received', 'received', 'received', 'received', 'received', 'received',
-    'received', 'received'
-]; //example
-let validValue = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //example
-let deadlineValue = ['1', '9', '8', '7', '6', '5', '3', '2', '1', '5']; //example
+let user_id = []; //example
+let product_id = []; //example
+let class_id = []; //example
+let zero = []; //example
+
+randomNum(user_id, 300, 40);
+randomNum(product_id, 150, 200);
+randomNum(class_id, 150, 5);
+randomNum(zero, 150, 0);
+product_id = [...product_id, ...zero];
+class_id = [...zero, ...class_id];
+
+function randomNum(arr, range, max) {
+    for (let i = 0; i < range; i++) {
+        arr.push(Math.ceil(Math.random() * max));
+    }
+    return arr;
+}
+
 //
 // 宣告 目標網址
-let url = "http://localhost:8080/project/api/order_info/post.php"; //example
-
+let url = "http://localhost:8080/project/api/user/備用/user-favorite/user-favorite-post.php"; //example
 
 try {
     // 依序放入宣告完的變數 
-    multiInput(url, keys, userValue, couponValue, deliveryValue, receipentValue, addressValue, payValue, statusValue,
-        validValue, deadlineValue) //keys 順序對應 value 的放入順序
+    multiInput(url, keys, user_id, product_id, class_id) //keys 順序對應 value 的放入順序
 } catch (e) {
     sayError(e);
 };
-
-
-
-
-
 
 
 function multiInput(url, keys, ...arrs) {
@@ -86,12 +84,12 @@ function multiInput(url, keys, ...arrs) {
             data: body,
             success: function(res) {
                 info.innerText +=
-                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應: \n ${JSON.stringify(res.responseText)}\n
+                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應: \n ${JSON.stringify(res)}\n
                     ----------------------`
             },
             error: function(err) {
                 info.innerText +=
-                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應:  \n ${JSON.stringify(err.responseText)}\n
+                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應:  \n ${JSON.stringify(err)}\n
                     ----------------------`
             },
         });

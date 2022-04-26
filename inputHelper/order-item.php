@@ -26,17 +26,42 @@
 let keys = ["product", "order_info", "class", "counter", "memo", "valid"]; //example
 //
 // 宣告 欲送出的 [value]
-let productValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //example
-let order_infoValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //example
-let classValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //example
-let counterValue = [3, 2, 1, 3, 2, 1, 5, 6, 7, 8]; //example
-let memoValue = ['freeze', 'caution', 'freeze', 'caution','freeze', 'caution','freeze', 'caution','freeze', 'caution',]; //example
-let validValue = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]; //example
+let productValue = []; //example
+let order_infoValue = []; //example
+let classValue = []; //example
+let counterValue = []; //example
+let memoValue = []; //example
+let memoList = ['加辣不加蒜', '九層塔多一點', '不要胡椒粉', '加梅粉', '', '', '']; //example
+let validValue = []; //example
+let zero = [];
 //
 // 宣告 目標網址
 let url = "http://localhost:8080/project/api/order_item/post.php"; //example
 
+randomNum(productValue, 100, 200);
+randomNum(classValue, 100, 5);
+randomNum(zero, 100, 0);
+productValue = [...productValue, ...zero];
+classValue = [...zero, ...classValue];
+randomNum(order_infoValue, 200, 20);
+randomNum(counterValue, 200, 5);
+randomContent(memoValue, 200, 7);
+randomContent(validValue, 200, 1);
 
+
+function randomNum(arr, range, max) {
+    for (let i = 0; i < range; i++) {
+        arr.push(Math.ceil(Math.random() * max));
+    }
+    return arr;
+}
+
+function randomContent(arr, range, max) {
+    for (let i = 0; i < range; i++) {
+        arr.push(memoList[Math.floor(Math.random() * max)]);
+    }
+    return arr;
+}
 try {
     // 依序放入宣告完的變數 
     multiInput(url, keys, productValue, order_infoValue, classValue, counterValue, memoValue,

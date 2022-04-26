@@ -1,6 +1,6 @@
 <div class="p-3">
     <!-- 表單 -->
-    <form action="../api/coupon_valid_product/post.php" method="POST">
+    <form action="../api/coupon_valid_product/post.php" method="post">
         <!-- 普通欄位 -->
         <div class="mb-3">
             <label for="product_id" class="form-label">商品ID</label>

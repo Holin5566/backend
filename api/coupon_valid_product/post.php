@@ -5,12 +5,12 @@ require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 $product_id = $_POST["product_id"];
 $coupon_id = $_POST["coupon_id"];
 
-$checkSql = "SELECT * FROM coupon_valid_product WHERE product_id=$product_id AND coupon_id=$coupon_id ";
-$check = $conn->query($checkSql)->num_rows;
-if ($check > 0) {
-    echo "資料已存在";
-    exit;
-}
+// $checkSql = "SELECT * FROM coupon_valid_product WHERE product_id=$product_id AND coupon_id=$coupon_id ";
+// $check = $conn->query($checkSql)->num_rows;
+// if ($check > 0) {
+//     echo "資料已存在";
+//     exit;
+// }
 
 
 if (!isset($_POST["product_id"]) || !isset($_POST["coupon_id"])) {
@@ -19,8 +19,8 @@ if (!isset($_POST["product_id"]) || !isset($_POST["coupon_id"])) {
 }
 
 
-$sql = "INSERT INTO coupon_valid_product (product_id, coupon_id)
-VALUES ('$product_id', '$coupon_id')";
+$sql = "INSERT INTO coupon_valid_product( coupon_id, product_id)
+VALUES('$coupon_id' , '$product_id')";
 //這裡也不需要valid
 
 if ($conn->query($sql) === TRUE) {

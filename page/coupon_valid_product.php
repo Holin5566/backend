@@ -139,13 +139,12 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                     <button type="submit" class="btn btn-info text-white">篩選</button>
                </div>
 
-               <div class="col" scope="col"><?php
-                                             $title = "新增適用商品";
-                                             $formType = "post-couponValidProduct";
-                                             require("../components/post-offcanvas.php") ?></div>.
-               </div>
           </form>
-
+          <div class="col" scope="col"><?php
+                                        $title = "新增適用商品";
+                                        $formType = "post-couponValidProduct";
+                                        require("../components/post-offcanvas.php") ?></div>.
+          </div>
 
 
 

@@ -19,7 +19,12 @@ $page_count = CEIL($total / $per_page);
 
 $validList = array("黑名單", "白名單")
 ?>
+
 <h2>會員一覽</h2>
+<div class="text-end">
+    <a href="../page/index.php?current=user-card"><img src="../img/icon/menu.png" alt="sections.png" class="mx-3"
+            style="width:1.5rem;"></a>
+</div>
 <table class="table table-striped table-hover my-3">
     <thead class="text-nowrap">
         <tr>

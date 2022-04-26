@@ -57,7 +57,7 @@ if ($id_type == "product" & $id != "") {
     user.createTime AS data08";
     $sqlWHERE = "WHERE comment.product=product.id AND comment.user=user.id AND $id_type=$id LIMIT $start, $per_page";
     //計算頁數
-    $pageSql = "SELECT order_info.*, user.name FROM order_info, user WHERE order_info.user=user.id";
+    $pageSql = "SELECT comment.*, user.name FROM comment,user,product WHERE comment.user=user.id AND comment.product=product.id AND $id_type=$id";
     $result = $conn->query($pageSql);
     $total = $result->num_rows;
     $page_count = CEIL($total / $per_page);
@@ -233,20 +233,20 @@ $genderList = array("男性", "女性", "隱藏");
         <div class="row g-0 align-items-start justify-content-center ">
             <div
                 class="avatar rounded-circle border border-3 col-4 overflow-hidden d-flex justify-content-center align-items-center">
-                <img src="../img/user/<?= $row["userPhoto"] ?>" class="w-100" alt="..." />
+                <img src="../img/product/<?= $row["productName"] ?>.jpg" class="w-100" alt="..." />
             </div>
             <div class="col">
                 <div class="card-body py-0">
-                    <p class="card-text mb-1">用戶 : <?= $row["userName"] ?></p>
-                    <p class="card-text mb-1">評價 :
+                    <p class="card-text mb-1">商品 : <?= $row["productName"] ?></p>
+                    <p class="card-text my-3">評價 :
 
                         <?php
-                                    for ($i = 0; $i < $row["score"]; $i++) {
-                                        echo "<img src='../img/icon/thumb-up.png' style='width: 1.5rem;' alt=''> ";
-                                    }
-                                    ?>
+                                        for ($i = 0; $i < $row["score"]; $i++) {
+                                            echo "<img src='../img/icon/thumb-up.png' style='width: 1.5rem;' alt=''> ";
+                                        }
+                                        ?>
                     </p>
-                    <p class="card-text mb-2">評論 : </p>
+                    <p class="card-text my-3"><?= $row["data02"] ?> 的心得 : </p>
 
 
                 </div>
@@ -270,51 +270,6 @@ $genderList = array("男性", "女性", "隱藏");
     <p><?= $id_type ?> #<?= $id ?> : 資料為空</p>
     <?php endif; ?>
 </div>
-
-
-<!--  -->
-<div class="row justify-content-around">
-    <?php foreach ($rows as $row) : ?>
-    <div class="card p-3 my-3 col-5">
-        <div class="row g-0 align-items-center mb-3">
-            <div class="col-md-4 ">
-                <img src="../img/product/<?= $row["data07"] ?>" class="img-fluid rounded-circle" alt="..." />
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <p class="card-text mb-1">商品 : <?= $row["productName"] ?> # <?= $row["productId"] ?></p>
-                    <p class="card-text mb-1"><strong>評價 : </strong>
-                        <?php
-                                        for ($i = 0; $i < $row["score"]; $i++) {
-                                            echo " 讚 ";
-                                        }
-                                        ?>
-                    </p>
-                    <p class="card-text mb-2"><strong>評論 : </strong></p>
-                    <h5 class="card-title border p-2"><?= $row["content"] ?></h5>
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="btn-group  mb-1" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn btn-outline-primary">訂單</button>
-                <button type="button" class="btn btn-outline-primary">隱藏</button>
-                <button type="button" class="btn btn-outline-primary">刪除</button>
-                <button type="button" class="btn btn-outline-primary">回報</button>
-            </div>
-        </div>
-        <div class="row">
-            <p class="text-center m-2"><small class="text-muted">建立時間 : <?= $row["createTime"] ?></small></p>
-        </div>
-    </div>
-    <?php endforeach; ?>
-    <?php else : ?>
-    <p>本次結果 : </p>
-    <p><?= $id_type ?> #<?= $id ?> : 資料為空</p>
-    <?php endif; ?>
-</div>
-
 <!-- 預設無篩選條件 -->
 <!-- 預設無篩選條件 -->
 <?php else : ?>
@@ -368,10 +323,11 @@ $genderList = array("男性", "女性", "隱藏");
 <?php endif; ?>
 <div>
     <nav aria-label="Page navigation ">
-        <ul class="pagination  d-flex justify-content-around">
+        <ul class="pagination  d-flex justify-content-center">
             <?php for ($i = 1; $i <= $page_count; $i++) : ?>
             <li class="page-item <?php if ($p == $i) echo "active"; ?> "><a class="page-link"
-                    href="../page/index.php?current=order-info&p=<?= $i ?>"><?= $i ?></a></li>
+                    href="../page/index.php?current=comment_filter&p=<?= $i ?>&id_type=<?= $id_type ?>&id=<?= $id ?>"><?= $i ?></a>
+            </li>
             <?php endfor; ?>
         </ul>
     </nav>

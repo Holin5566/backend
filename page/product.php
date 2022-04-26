@@ -58,6 +58,8 @@ $launchedList = array("NO", "YES");
 
 <!-- 價格高低 -->
 <div class="text-end">
+    <a href="../page/index.php?current=product-card"><img src="../img/icon/sections.png" alt="sections.png" class="mx-3"
+            style="width:1.5rem;"></a>
     <a class="btn-sm btn-info text-white text-decoration-none <?php if ($type == 1) echo "active" ?>"
         href="index.php?current=product&type=1">由價低至高</a>
     <a class="btn-sm btn-info text-white text-decoration-none<?php if ($type == 2) echo "active" ?>"

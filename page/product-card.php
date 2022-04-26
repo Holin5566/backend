@@ -34,50 +34,51 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 
 <style>
-    .product-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -1;
-        /* background-attachment: local, scroll; */
-    }
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    /* background-attachment: local, scroll; */
+}
 
-    .card {
-        z-index: -2;
-    }
-    p{
-        margin: 5px 0;
-        padding: 1px;
-    }
-    .multiline-ellipsis { 
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
+.card {
+    z-index: -2;
+}
+
+p {
+    margin: 5px 0;
+    padding: 1px;
+}
+
+.multiline-ellipsis {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 </style>
 
 
 <div class="container-fluid row my-1 mx-auto gy-4">
-
-    <div class="py-2 text-end">
-    第 <?= $p ?> 頁,共 <?= $page_count ?> 頁,共 <?= $total ?> 筆
+    <div class="text-end">
+        <a href="../page/index.php?current=product"><img src="../img/icon/menu.png" alt="sections.png" class="mx-3"
+                style="width:1.5rem;"></a>
     </div>
-
     <?php $count = 1 ?>
     <?php foreach ($rows as $row) : ?>
-        <!-- <//?php $picture_name = $row["img_name"] ?> -->
-        <?php $picture_name = $row["name"] ?>
-        <?php $pro_id = $row["id"] ?>
-        <!-- <//?php $pro_id_count = $rows["id"] ?> -->
-        <!-- <//?php print_r(array_count_values($pro_id)); ?> -->
+    <!-- <//?php $picture_name = $row["img_name"] ?> -->
+    <?php $picture_name = $row["name"] ?>
+    <?php $pro_id = $row["id"] ?>
+    <!-- <//?php $pro_id_count = $rows["id"] ?> -->
+    <!-- <//?php print_r(array_count_values($pro_id)); ?> -->
 
-        <div class="col-md-6">
+    <div class="col-md-6">
 
-            <div class="card shadow mx-auto" style="max-width: 650px; height: 50vh; overflow-y: auto;">
-                <div class="row g-0 h-100">
+        <div class="card shadow mx-auto" style="max-width: 650px; height: 50vh; overflow-y: auto;">
+            <div class="row g-0 h-100">
 
-                    <?php
+                <?php
                     $sql = "SELECT * FROM images WHERE product_id = $pro_id";
                     $result = $conn->query($sql);
                     $imgRows = $result->fetch_all(MYSQLI_ASSOC);
@@ -85,23 +86,25 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 
 
-                    <?php if ($result->num_rows <= 1) : ?>
-                        <div class="col-md-5">
-                            <img src="../img/product/<?= $picture_name ?>.jpg" class="product-img img-fluid rounded-start" alt="...">
-                        </div>
-                    <?php else : ?>
-                        <!-- 多張圖 -->
-                        <div id="carouselExampleControls" class="carousel slide col-md-5" data-bs-ride="carousel">
-                            <div class="carousel-inner h-100">
-                                <?php for ($i = 0; $i < $result->num_rows; $i++) : ?>
-                                    <?php $imgName = $imgRows[$i]["name"] ?>
-                                    <div class="h-100 carousel-item <?php if ($i == 0) {
+                <?php if ($result->num_rows <= 1) : ?>
+                <div class="col-md-5">
+                    <img src="../img/product/<?= $picture_name ?>.jpg" class="product-img img-fluid rounded-start"
+                        alt="...">
+                </div>
+                <?php else : ?>
+                <!-- 多張圖 -->
+                <div id="carouselExampleControls" class="carousel slide col-md-5" data-bs-ride="carousel">
+                    <div class="carousel-inner h-100">
+                        <?php for ($i = 0; $i < $result->num_rows; $i++) : ?>
+                        <?php $imgName = $imgRows[$i]["name"] ?>
+                        <div class="h-100 carousel-item <?php if ($i == 0) {
                                                                         echo "active";
                                                                     } ?>">
-                                        <img src="../img/product/<?= $imgName ?>" class="product-img d-block w-100 rounded-start " style="pointer-events: none;" alt="...">
-                                    </div>
-                                <?php endfor; ?>
-                                <!-- <div class="carousel-item active">
+                            <img src="../img/product/<?= $imgName ?>" class="product-img d-block w-100 rounded-start "
+                                style="pointer-events: none;" alt="...">
+                        </div>
+                        <?php endfor; ?>
+                        <!-- <div class="carousel-item active">
                             <img src="../img/product/<//?= $picture_name ?>" class="d-block w-100 rounded-start"
                                 alt="...">
                         </div>
@@ -111,96 +114,98 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <div class="carousel-item">
                             <img src="..." class="d-block w-100" alt="...">
                         </div> -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                </div>
+                <?php endif; ?>
+
+                <div class="col-md-7">
+                    <div class="py-4 px-4">
+                        <h4 class="card-title fw-bold text-center mb-3"><?= $row["name"] ?></h4>
+
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="fw-bold">價錢</p>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            <div class="col-9">
+                                <p class="bg-light border">&nbsp;<?= $row["price"] ?></p>
+                            </div>
 
-                        </div>
-                    <?php endif; ?>
+                            <div class="col-3">
+                                <p class="fw-bold text-nowrap">建立時間</p>
+                            </div>
+                            <div class="col-9">
+                                <p class="bg-light border">&nbsp;<?= $row["createTime"] ?></p>
+                            </div>
 
-                    <div class="col-md-7">
-                        <div class="py-4 px-4">
-                            <h4 class="card-title fw-bold text-center mb-3"><?= $row["name"] ?></h4>
+                            <div class="col-3">
+                                <p class="fw-bold text-nowrap">配送方式</p>
+                            </div>
+                            <div class="col-3 overflow">
+                                <p class="text-nowrap bg-light border">&nbsp;<?= $expressList[$row["express"]] ?></p>
+                            </div>
+                            <div class="col-3">
+                                <p class="fw-bold">庫存</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="bg-light border">&nbsp;<?= $row["inventory"] ?></p>
+                            </div>
 
-                            <div class="row">
-                                <div class="col-3">
-                                    <p class="fw-bold">價錢</p>
-                                </div>
-                                <div class="col-9">
-                                    <p class="bg-light border">&nbsp;<?= $row["price"] ?></p>
-                                </div>
+                            <div class="col-3">
+                                <p class="fw-bold text-nowrap">上/下架</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="bg-light border">&nbsp;<?= $launchedList[$row["launched"]] ?></p>
+                            </div>
+                            <div class="col-3">
+                                <p class="fw-bold">啟用<br>(軟刪除)</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="bg-light border">&nbsp;<?= $validList[$row["valid"]] ?></p>
+                            </div>
 
-                                <div class="col-3">
-                                    <p class="fw-bold text-nowrap">建立時間</p>
-                                </div>
-                                <div class="col-9">
-                                    <p class="bg-light border">&nbsp;<?= $row["createTime"] ?></p>
-                                </div>
+                            <div class="col">
+                                <p class="fw-bold">商品說明</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="bg-light border multiline-ellipsis">&nbsp;<?= $row["description"] ?></p>
+                            </div>
 
-                                <div class="col-3">
-                                    <p class="fw-bold text-nowrap">配送方式</p>
-                                </div>
-                                <div class="col-3 overflow">
-                                    <p class="text-nowrap bg-light border">&nbsp;<?= $expressList[$row["express"]] ?></p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fw-bold">庫存</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="bg-light border">&nbsp;<?= $row["inventory"] ?></p>
-                                </div>
-
-                                <div class="col-3">
-                                    <p class="fw-bold text-nowrap">上/下架</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="bg-light border">&nbsp;<?= $launchedList[$row["launched"]] ?></p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="fw-bold">啟用<br>(軟刪除)</p>
-                                </div>
-                                <div class="col-3">
-                                    <p class="bg-light border">&nbsp;<?= $validList[$row["valid"]] ?></p>
-                                </div>
-
-                                <div class="col">
-                                    <p class="fw-bold">商品說明</p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="bg-light border multiline-ellipsis">&nbsp;<?= $row["description"] ?></p>
-                                </div>
-
-                                <?php
-                                    $mergeSql = "SELECT category.name
+                            <?php
+                                $mergeSql = "SELECT category.name
                                         FROM product_property_category, category ,product
                                         WHERE category.id = product_property_category.category_id
                                         AND product.id = product_property_category.product_id
                                         AND product.id=$pro_id;";
 
-                                    $resultCategory = $conn->query($mergeSql);
-                                    $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
+                                $resultCategory = $conn->query($mergeSql);
+                                $rowsCategory = $resultCategory->fetch_all(MYSQLI_ASSOC);
                                 ?>
-                                
-                                <div class="col-3">
-                                    <p class="fw-bold text-nowrap">商品分類</p>
-                                </div>
-                                <div class="col-9">
-                                <?php foreach ($rowsCategory as $Category) : ?>
-                                    <p><span
-                                            class="badge rounded-pill bg-light text-dark border"><?= $Category["name"] ?></span>
-                                    </p>
-                                    <?php $count++ ?>
-                                <?php endforeach; ?>
-                                </div>
-                            </div>
 
-                            <!-- <table class="table">
+                            <div class="col-3">
+                                <p class="fw-bold text-nowrap">商品分類</p>
+                            </div>
+                            <div class="col-9">
+                                <?php foreach ($rowsCategory as $Category) : ?>
+                                <p><span
+                                        class="badge rounded-pill bg-light text-dark border"><?= $Category["name"] ?></span>
+                                </p>
+                                <?php $count++ ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <!-- <table class="table">
                                 <tr>
                                     <th class="text-nowrap">價錢</th>
                                     <td colspan="3"><?= $row["price"] ?></td>
@@ -247,16 +252,16 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     
                                 </tr>
                             </table> -->
-                        </div>
                     </div>
-
-
-
-
                 </div>
-            </div>
 
+
+
+
+            </div>
         </div>
+
+    </div>
     <?php endforeach; ?>
 
     <!-- 分頁 -->
@@ -269,6 +274,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         href="index.php?current=product-card&p=<?= $i ?>"><?= $i ?></a></li>
                 <?php endfor; ?>
             </ul>
+            <div class="py-2 text-end">
+                第 <?= $p ?> 頁,共 <?= $page_count ?> 頁,共 <?= $total ?> 筆
+            </div>
         </nav>
     </div>
 

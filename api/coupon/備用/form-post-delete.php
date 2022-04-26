@@ -3,12 +3,12 @@ require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 
 
 
-$id = $_GET["id"];
+$product_id = $_GET["product_id"];
+$coupon_id = $_GET["coupon_id"];
 
 
-$sql = "DELETE FROM coupon WHERE id='$id'";
+$sql = "DELETE FROM coupon_valid_product WHERE product_id='$product_id' AND coupon_id='$coupon_id' ";
 
-$result = $conn->query($sql);
 
 if ($conn->query($sql) === TRUE) {
     //     echo "刪除成功";

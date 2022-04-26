@@ -21,13 +21,14 @@ $sql = "UPDATE product SET name='$name', price='$price', express='$express', des
     ";
 
 
-if ($conn->query($sql) === TRUE) {
-    echo "新增資料完成";
-    // header("location: ../../page/index.php?current=product");
-    exit;
-} else {
-    echo "新增資料錯誤: " . $conn->error;
-}
+    if ($conn->query($sql) === TRUE) {
+        echo "編輯資料完成";
+        // header("location: ../../page/index.php?current=product");
+        exit;
+        
+    } else {
+        echo "新增資料錯誤: " . $conn->error;
+    }
 
 $conn->close();
 

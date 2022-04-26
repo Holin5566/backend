@@ -58,12 +58,12 @@ $launchedList = array("NO", "YES");
 
 <!-- 價格高低 -->
 <div class="text-end">
-    <a href="../page/index.php?current=product-card"><img src="../img/icon/sections.png" alt="sections.png" class="mx-3"
-            style="width:1.5rem;"></a>
     <a class="btn-sm btn-info text-white text-decoration-none <?php if ($type == 1) echo "active" ?>"
-        href="index.php?current=product&type=1">由價低至高</a>
+    href="index.php?current=product&type=1">由價低至高</a>
     <a class="btn-sm btn-info text-white text-decoration-none<?php if ($type == 2) echo "active" ?>"
-        href="index.php?current=product&type=2">由價高至低</a>
+    href="index.php?current=product&type=2">由價高至低</a>
+    <a href="../page/index.php?current=product-card"><img src="../img/icon/sections.png" alt="sections.png" class="ms-3"
+            style="width:1.5rem;"></a>
 </div>
 
 <div class="py-2 text-end">
@@ -76,11 +76,22 @@ $launchedList = array("NO", "YES");
         <tr>
             <th scope="col"></th>
             <th scope="col">編號</th>
-            <th scope="col">名稱</th>
-            <th scope="col">價格</th>
-            <th scope="col" class="text-nowrap">配送方式</th>
-            <th scope="col" class="text-nowrap">庫存</th>
-            <th scope="col" class="text-nowrap">上/下架</th>
+            <th scope="col">
+                <img src="../img/icon/cake.png" alt=""  class="me-2" style="width:1.4rem;">名稱
+            </th>
+            <th scope="col"></th>
+            <th scope="col" class="text-nowrap">
+                <img src="../img/icon/price-tag.png" alt="" class="me-2" style="width:1.4rem;">價格
+            </th>
+            <th scope="col" class="text-nowrap">
+                <img src="../img/icon/delivery-truck.png" alt=""  class="me-2" style="width:1.4rem;">配送方式
+            </th>
+            <th scope="col" class="text-nowrap">
+                <img src="../img/icon/packages.png" alt=""  class="me-2" style="width:1.4rem;">庫存
+            </th>
+            <th scope="col" class="text-nowrap">
+                <img src="../img/icon/stand.png" alt=""  class="me-2" style="width:1.4rem;">上/下架
+            </th>
             <th scope="col"><?php
                             $title = "新增商品";
                             $formType = "post-product";
@@ -93,10 +104,11 @@ $launchedList = array("NO", "YES");
             <td><?= $count ?>.</td>
             <td class="text-nowrap"># <?= $row["id"] ?></td>
             <td><?= $row["name"] ?></td>
-            <td><?= $row["price"] ?></td>
-            <td><?= $expressList[$row["express"]] ?></td>
-            <td><?= $row["inventory"] ?></td>
-            <td><?= $launchedList[$row["launched"]] ?></td>
+            <td></td>
+            <td class="text-center"><?= $row["price"] ?></td>
+            <td class="text-center"><?= $expressList[$row["express"]] ?></td>
+            <td class="text-center"><?= $row["inventory"] ?></td>
+            <td class="text-center"><?= $launchedList[$row["launched"]] ?></td>
             <td> </td>
         </tr>
         <tr>
@@ -105,7 +117,7 @@ $launchedList = array("NO", "YES");
             <td colspan="2">
                 <span class="text-muted"><small><?= $row["description"] ?></small></span>
             </td>
-            <td colspan="4" class="text-center">
+            <td colspan="5" class="text-end">
                 <button type="button" class="btn-sm btn-success"><a class="text-light text-decoration-none"
                         href="http://localhost:8080/project/page/index.php?id_type=product&id=<?= $row["id"] ?>&current=comment_filter">評論</a></button>
                 <?php

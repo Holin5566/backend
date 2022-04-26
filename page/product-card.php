@@ -65,9 +65,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     /* background-attachment: local, scroll; */
 }
 
-.card {
+/* .card {
     z-index: -2;
-}
+} */
 
 p {
     margin: 5px 0;
@@ -92,7 +92,7 @@ p {
         <a class="btn-sm btn-info text-white text-decoration-none <?php if ($type == 2) echo "active" ?>"
             href="index.php?current=product-card&type=2">由價高至低</a>
 
-        <a href="../page/index.php?current=product"><img src="../img/icon/menu.png" alt="sections.png" class="mx-3"
+        <a href="../page/index.php?current=product"><img src="../img/icon/menu.png" alt="sections.png" class="ms-3"
                 style="width:1.5rem;"></a>
     </div>
     <?php $count = 1 ?>
@@ -233,8 +233,18 @@ p {
                                 <?php $count++ ?>
                                 <?php endforeach; ?>
                             </div>
+                            
+                            <div class="pt-4 text-end">
+                                <button type="button" class="btn-sm btn-success"><a class="text-light text-decoration-none"
+                                href="http://localhost:8080/project/page/index.php?id_type=product&id=<?= $row["id"] ?>&current=comment_filter">評論</a></button>
+                                <?php
+                                    $edit_type = "edit-product";
+                                    require("../components/edit-modal.php") ?>
+                                <button type="button" class="btn-sm btn-danger"><a href="../api/product/delete.php?id=<?= $row["id"] ?>"
+                                        class="btn-sm btn-danger text-decoration-none">刪除</a></button>
+                            </div>
                         </div>
-
+                        
                         <!-- <table class="table">
                                 <tr>
                                     <th class="text-nowrap">價錢</th>

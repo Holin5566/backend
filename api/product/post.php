@@ -23,11 +23,11 @@ $launched = $_POST["launched"];
 
 
 $checkSql = "SELECT * FROM product WHERE name=$name AND price=$price ";
-$check = $conn->query($checkSql)->num_rows;
-if ($check > 0) {
-    echo "資料已存在";
-    exit;
-}
+// $check = $conn->query($checkSql)->num_rows;
+// if ($check > 0) {
+//     echo "資料已存在";
+//     exit;
+// }
 
 
 $sql = "INSERT INTO product (name, price, express, createTime, description, inventory, launched, valid)
@@ -35,7 +35,8 @@ $sql = "INSERT INTO product (name, price, express, createTime, description, inve
     ";
 
 if ($conn->query($sql) === TRUE) {
-    echo "新增資料完成";
+    // echo "新增資料完成";
+    header("location: ../../page/index.php?current=product");
 } else {
     echo "新增資料錯誤: " . $conn->error;
 }

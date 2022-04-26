@@ -1,14 +1,6 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 
-if (!isset($_GET["p"])) {
-     $p = 1;
-} else {
-     $p = $_GET["p"];
-}
-
-
-
 if (isset($_GET["id_type"]) && isset($_GET["id"])) {
      $id_type = $_GET["id_type"];
      $id = $_GET["id"];
@@ -23,50 +15,28 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
      if ($rowCount > 0) {
           $id_type = $_GET["id_type"];
           $id = $_GET["id"];
-
-          if (!isset($_GET["p"])) {
-               $p = 1;
-          } else {
-               $p = $_GET["p"];
-          }
-
           $sql = "SELECT coupon_valid_product. * , 
-          product.name AS pro_name  
-          FROM product,coupon_valid_product,coupon 
-          WHERE coupon.id=coupon_valid_product.coupon_id 
-          AND product.id=coupon_valid_product.product_id 
-          AND $id_type=$id ";
-          $result = $conn->query($sql);
-          $total = $result->num_rows;
-
-
-          $per_page = 4;
-          $start = ($p - 1) * $per_page;
-
-          $sql = "SELECT coupon_valid_product. * , 
-          -- 以什麼資料夾為基準↑
-          product.name AS pro_name ,
-          -- 因為coupon 與 product 兩個檔案有相同的name所以我設定product的name 變更為 pro_name
-          coupon.name, 
-          coupon.discount,
-          coupon.expiry,
-          coupon.code, 
-          coupon.limited,
-          coupon.valid, 
-          product.price,
-          product.inventory ,
-          product.createTime 
-          -- 以上四個是從coupon 與 product 裡個檔案中我要拿出來加入coupon_valid_product的資料
-          FROM product,coupon_valid_product,coupon 
-          -- 我要關聯的資料
-          WHERE coupon.id=coupon_valid_product.coupon_id 
-          AND product.id=coupon_valid_product.product_id 
-          -- 將這些資料合併的基準是什麼以上面的方式呈現
-          AND $id_type=$id  LIMIT $start, $per_page ";
-
+    -- 以什麼資料夾為基準↑
+    product.name AS pro_name ,
+    -- 因為coupon 與 product 兩個檔案有相同的name所以我設定product的name 變更為 pro_name
+    coupon.name, 
+    coupon.discount,
+    coupon.expiry,
+    coupon.code, 
+    coupon.limited,
+    coupon.valid, 
+    product.price,
+    product.inventory ,
+    product.createTime 
+    -- 以上四個是從coupon 與 product 裡個檔案中我要拿出來加入coupon_valid_product的資料
+    FROM product,coupon_valid_product,coupon 
+    -- 我要關聯的資料
+    WHERE coupon.id=coupon_valid_product.coupon_id 
+    AND product.id=coupon_valid_product.product_id 
+    -- 將這些資料合併的基準是什麼以上面的方式呈現
+    AND $id_type=$id ";
           $result = $conn->query($sql);
           $rows = $result->fetch_all(MYSQLI_ASSOC);
-          $page_count = CEIL($total / $per_page);
      } else {
 
           echo  "$id_type # $id 資料為空";
@@ -108,8 +78,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 <!-- 清單 -->
 <h2>優惠券適用商品</h2>
 <table class="table">
-
-
      <thead>
           <form action="../page/index.php">
                <!-- 功能為導去哪一個網址 -->
@@ -129,20 +97,19 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                               <input type="number" class="form-control" name="id" value="<?= $id ?>">
                          </div>
                     </div>
-               </div>
 
-               <div class="col-auto">
-                    <input type="text" class="d-none" value="coupon_valid_product" name="current">
-                    <!-- 如果沒有這個，網頁會get不到東西 -->
-               </div>
-               <div class="col ">
-                    <button type="submit" class="btn btn-info text-white">篩選</button>
-               </div>
+                    <div class="col-auto">
+                         <input type="text" class="d-none" value="coupon_valid_product" name="current">
+                         <!-- 如果沒有這個，網頁會get不到東西 -->
+                    </div>
+                    <div class="col ">
+                         <button type="submit" class="btn btn-info text-white">篩選</button>
+                    </div>
 
-               <div class="col" scope="col"><?php
-                                             $title = "新增適用商品";
-                                             $formType = "post-couponValidProduct";
-                                             require("../components/post-offcanvas.php") ?></div>.
+                    <div class="col" scope="col"><?php
+                                                  $title = "新增適用商品";
+                                                  $formType = "post-couponValidProduct";
+                                                  require("../components/post-offcanvas.php") ?></div>.
                </div>
           </form>
 
@@ -182,7 +149,7 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 
                                         </div>
                                    </div>
-                                   <div class="row mb-3">
+                                   <div class="row">
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                                              <button type="button" class="btn btn-outline-primary">
                                                   <a href="http://localhost:8080/project/api/coupon/備用/form-post-edit.php?id=<?= $row["id"] ?>">編輯</a></button>
@@ -203,7 +170,7 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                <?php else : ?>
                     <h3><?= $rows[0]["name"] ?></h3>
                     <ul class="list-group list-group-flush">
-                         <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?> %</li>
+                         <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?></li>
                          <li class="fw-bolder list-group-item">使用期限: <?= $rows[0]["expiry"] ?></li>
                          <li class="fw-bolder list-group-item">使用次數: <?= $rows[0]["limited"] ?></li>
                     </ul>
@@ -212,7 +179,7 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                          <div class=" row">
                               <?php foreach ($rows as $row) : ?>
                                    <div class="card m-4" style="width: 18rem;">
-                                        <img class="card-img-top w-100" src="../img/product/<?= $row["pro_name"] ?>.jpg" alt="<?= $row["pro_name"] ?>">
+                                        <img class="card-img-top" src="../img/icon/barcode.png" alt="Card image cap">
 
                                         <li class="">商品名稱: </li>
                                         <li class="list-group-item m-3"><?= $row["pro_name"] ?></li>
@@ -227,8 +194,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
           </div>
           </div>
      <?php endif; ?>
-
-
 
 </table>
 <!-- <div class="col-auto">

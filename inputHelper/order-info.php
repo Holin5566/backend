@@ -29,10 +29,17 @@ let keys = ["user", "coupon", "delivery", "receipent", "address", "pay", "status
 let userValue = ["1", "2", '3', '4', '5', '6', '7', '8', '9', '10']; //example
 let couponValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //example
 let deliveryValue = ['mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'mail']; //example
-let receipentValue = ['coco', 'emily', 'michael', 'john', 'tim', 'justin', 'camille', 'janny', 'katrina', 'rick']; //example
-let addressValue = ['taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting', 'taipei']; //example
-let payValue = ['cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card']; //example
-let statusValue = ['received', 'received', 'received', 'received', 'received', 'received', 'received', 'received','received','received']; //example
+let receipentValue = ['coco', 'emily', 'michael', 'john', 'tim', 'justin', 'camille', 'janny', 'katrina',
+'rick']; //example
+let addressValue = ['taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting',
+    'taipei'
+]; //example
+let payValue = ['cash', 'credit card', 'cash', 'credit card', 'cash', 'credit card', 'cash', 'credit card', 'cash',
+    'credit card'
+]; //example
+let statusValue = ['received', 'received', 'received', 'received', 'received', 'received', 'received', 'received',
+    'received', 'received'
+]; //example
 let validValue = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //example
 let deadlineValue = ['1', '9', '8', '7', '6', '5', '3', '2', '1', '5']; //example
 //

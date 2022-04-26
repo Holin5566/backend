@@ -2,7 +2,7 @@
 
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
-$sqlSELECT = "SELECT comment.*,product.name AS proName,user.name AS userName";
+$sqlSELECT = "SELECT comment.*,product.name AS proName,user.name AS userName,product.id AS proId";
 $sqlFROM = "FROM comment,product,user";
 $sqlWHERE = "WHERE comment.product=product.id AND comment.user=user.id";
 $sql = "$sqlSELECT $sqlFROM $sqlWHERE";
@@ -36,6 +36,9 @@ $i = 1;
             <td><?= $row["score"] ?></td>
             <td><?= $row["createTime"] ?></td>
             <td class="text-center">
+                <button type="button" class="btn-sm btn-success"><a
+                        href="../page/index.php?id_type=product&id=<?= $row["proId"] ?>&current=comment_filter"
+                        class="btn-sm btn-success">查看商品</a></button>
                 <button type="button" class="btn-sm btn-success"><a
                         href="../page/index.php?id_type=user&id=<?= $row["id"] ?>&current=comment_filter"
                         class="btn-sm btn-success">查看作者</a></button>

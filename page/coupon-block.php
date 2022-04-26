@@ -31,51 +31,58 @@ $page_count = CEIL($total / $per_page);
 ?>
 
 
-<h3>優惠券一覽(方塊)</h3>
+<h3>優惠券一覽</h3>
+<div class="text-end">
+    <a href="../page/index.php?current=coupon"><img src="../img/icon/sections.png" alt="sections.png" class="mx-3"
+            style="width:1.5rem;"></a>
+</div>
 <div class="row">
-     <?php foreach ($rows as $row) : ?>
-          <div class="card m-3" style="max-width: 540px">
-               <div class="row g-0 align-items-center">
-                    <div class="col-md-4 ">
-                         <img src="../img/icon/coupon.png" class="img-fluid rounded-start" alt="..." />
-                    </div>
-                    <div class="col-md-8">
+    <?php foreach ($rows as $row) : ?>
+    <div class="card m-3" style="max-width: 540px">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-4 ">
+                <img src="../img/icon/coupon.png" class="img-fluid rounded-start" alt="..." />
+            </div>
+            <div class="col-md-8">
 
-                         <div class="card-body">
-                              <h5 class="card-title"><strong>Coupon# <?= $row["id"] ?></strong></h5>
-                              <p class="card-text mb-0"><span><strong>優惠券 :</strong></span><?= $row["name"] ?></p>
-                              <p class="card-text mb-0"><span><strong>序號 : </strong></span><?= $row["code"] ?></p>
-                              <p class="card-text mb-0"><span><strong>折扣% : </strong></span><?= $row["discount"] ?></p>
-                              <p class="card-text mb-0"><span><strong>使用期限 : </strong></span></p>
-                              <p><?= $row["expiry"] ?></p>
-                              <p class="card-text mb-0"><span><strong>使用次數 : </strong></span><?= $row["limited"] ?></p>
-                              <p class="card-text mb-0"><span><strong>啟用:</strong></span><?= $row["valid"] ?></p>
-                              </p>
-                         </div>
-                    </div>
-                    <div class="row">
-                         <div class="btn-group" role="group" aria-label="Basic outlined example">
-                              <button type="button" class="btn btn-outline-primary">
-                                   <a href="http://localhost:8080/project/api/coupon/備用/form-post-edit.php?id=<?= $row["id"] ?>">編輯</a></button>
-                              <button type="button" class="btn btn-outline-primary">
-                                   <a href="http://localhost:8080/project/api/coupon/備用/form-post-delete.php?id=<?= $row["id"] ?>">刪除</a></button>
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Coupon# <?= $row["id"] ?></strong></h5>
+                    <p class="card-text mb-0"><span><strong>優惠券 :</strong></span><?= $row["name"] ?></p>
+                    <p class="card-text mb-0"><span><strong>序號 : </strong></span><?= $row["code"] ?></p>
+                    <p class="card-text mb-0"><span><strong>折扣% : </strong></span><?= $row["discount"] ?></p>
+                    <p class="card-text mb-0"><span><strong>使用期限 : </strong></span></p>
+                    <p><?= $row["expiry"] ?></p>
+                    <p class="card-text mb-0"><span><strong>使用次數 : </strong></span><?= $row["limited"] ?></p>
+                    <p class="card-text mb-0"><span><strong>啟用:</strong></span><?= $row["valid"] ?></p>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                    <button type="button" class="btn btn-outline-primary">
+                        <a
+                            href="http://localhost:8080/project/api/coupon/備用/form-post-edit.php?id=<?= $row["id"] ?>">編輯</a></button>
+                    <button type="button" class="btn btn-outline-primary">
+                        <a
+                            href="http://localhost:8080/project/api/coupon/備用/form-post-delete.php?id=<?= $row["id"] ?>">刪除</a></button>
 
-                         </div>
+                </div>
 
-                    </div>
-               </div>
-          </div>
-     <?php endforeach; ?>
-     <nav aria-label="Page navigation example">
-          <ul class="pagination">
-               <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-                    <li class="page-item <?php if ($i == $p) echo "active" ?>"><a class="page-link" href="index.php?current=coupon-block&p=<?= $i ?>"><?= $i ?></a></li>
-               <?php endfor ?>
-          </ul>
+            </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <?php for ($i = 1; $i <= $page_count; $i++) : ?>
+            <li class="page-item <?php if ($i == $p) echo "active" ?>"><a class="page-link"
+                    href="index.php?current=coupon-block&p=<?= $i ?>"><?= $i ?></a></li>
+            <?php endfor ?>
+        </ul>
 
-          <div class="py-2 text-end">
-               第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
-          </div>
+        <div class="py-2 text-end">
+            第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
+        </div>
 
-     </nav>
+    </nav>
 </div>

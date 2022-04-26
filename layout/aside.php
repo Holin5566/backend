@@ -83,8 +83,7 @@
             data-bs-parent="#aside-menu">
             <div class="accordion-body p-0 text-center">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon">優惠券一覽</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon-block">優惠券一覽(方塊)</a></li>
+                    <li class="list-group-item"><a href="../page/index.php?current=coupon-block">優惠券一覽</a></li>
                     <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_product">優惠券適用商品</a>
                     <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_class
                             ">優惠券適用課程</a>

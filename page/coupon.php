@@ -1,34 +1,34 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 if (!isset($_GET["p"])) {
-     $p = 1;
+    $p = 1;
 } else {
-     $p = $_GET["p"];
+    $p = $_GET["p"];
 }
 
 if (!isset($_GET["type"])) {
-     $type = "1";
+    $type = "1";
 } else {
-     $type = $_GET["type"];
+    $type = $_GET["type"];
 }
 
 switch ($type) {
-          // 如果type的值是1的話
-     case "1":
-          $order = "limited ASC";
-          break;
-     case "2":
-          $order = "limited DESC";
-          break;
-     case "3":
-          $order = "discount ASC";
-          break;
-     case "4":
-          $order = "discount DESC";
-          break;
-     default:
-          $order = "limited ASC";
-          break;
+        // 如果type的值是1的話
+    case "1":
+        $order = "limited ASC";
+        break;
+    case "2":
+        $order = "limited DESC";
+        break;
+    case "3":
+        $order = "discount ASC";
+        break;
+    case "4":
+        $order = "discount DESC";
+        break;
+    default:
+        $order = "limited ASC";
+        break;
 }
 
 
@@ -59,6 +59,7 @@ $page_count = CEIL($total / $per_page);
 
 
 <h3>優惠券一覽</h3>
+
 <div class="text-end">
     <form action="http://localhost:8080/project/page/index.php?current=coupon&p=<?= $p ?>&type=<?= $type ?>"
         class="row justify-content-end">
@@ -76,11 +77,14 @@ $page_count = CEIL($total / $per_page);
             </select>
 
             <button type="submit" class="btn btn-info text-white">篩選</button>
+            <p>目前順序 : <?= $order ?></p>
 
         </div>
-
     </form>
-    <p>目前順序 : <?= $order ?></p>
+    <div class="text-end">
+        <a href="../page/index.php?current=coupon-block"><img src="../img/icon/menu.png" alt="sections.png" class="mx-3"
+                style="width:1.5rem;"></a>
+    </div>
 </div>
 <!-- <img style="max-width: 25px" src=" ../img/icon/arrow.png" alt=""> 折扣</a> -->
 <!-- <div class="text-end mb-2">
@@ -110,9 +114,9 @@ $page_count = CEIL($total / $per_page);
                 </th>
                 <th><img src="../img/icon/valid.png" class="img-fluid rounded-start" style="max-width:25px" /> 啟用</th>
                 <th scope="col"><?php
-                                        $title = "新增優惠券";
-                                        $formType = "post-coupon";
-                                        require("../components/post-offcanvas.php") ?></th>
+                                $title = "新增優惠券";
+                                $formType = "post-coupon";
+                                require("../components/post-offcanvas.php") ?></th>
             </tr>
         </thead>
         <tbody>
@@ -126,12 +130,12 @@ $page_count = CEIL($total / $per_page);
                 <td><?= $row["discount"] ?>%</td>
                 <td colspan="2"><?= $row["expiry"] ?></td>
                 <td><?php
-                              if ($row["limited"] == 0) {
-                                   echo "無限制使用次數";
-                              } else {
-                                   echo $row["limited"];
-                              }
-                              ?></td>
+                        if ($row["limited"] == 0) {
+                            echo "無限制使用次數";
+                        } else {
+                            echo $row["limited"];
+                        }
+                        ?></td>
                 <td><?= $row["valid"] ?></td>
                 <td></td>
 
@@ -147,8 +151,8 @@ $page_count = CEIL($total / $per_page);
                         <a class="text-white"
                             href="/project/page/index.php?id_type=coupon_id&id=<?= $row["id"] ?>&current=coupon_valid_product">適用商品</a></button>
                     <?php
-                              $edit_type = "edit-coupon";
-                              require("../components/edit-modal.php") ?>
+                        $edit_type = "edit-coupon";
+                        require("../components/edit-modal.php") ?>
                     <button type="button" class="btn-sm btn-danger ">
                         <a class="text-white"
                             href="/project/api/coupon/備用/form-post-delete.php?id=<?= $row["id"] ?>">刪除</a></button>

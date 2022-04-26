@@ -111,6 +111,12 @@ $genderList = array("男性", "女性", "隱藏");
                 <input type="hidden" name="current" value="comment_filter">
                 <button type="submit" class="btn btn-primary">篩選</button>
             </div>
+            <div class="col">
+                <?php
+                $title = "新增評論";
+                $formType = "post-comment";
+                require("../components/post-offcanvas.php") ?>
+            </div>
         </div>
 
     </fieldset>

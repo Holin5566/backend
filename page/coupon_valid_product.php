@@ -152,6 +152,17 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 
      </thead>
      <?php if (($id_type == "product_id")) : ?>
+          <nav aria-label="Page navigation example">
+               <ul class="pagination">
+                    <?php for ($i = 1; $i <= $page_count; $i++) : ?>
+                         <li class="page-item <?php if ($i == $p) echo "active" ?>">
+                              <a class="page-link" href="index.php?id_type=product_id&id=<?= $id ?>&p=<?= $i ?>&current=coupon_valid_product"><?= $i ?></a>
+                         </li>
+                    <?php endfor ?>
+               </ul>
+
+
+          </nav>
           <!-- 如果是以商品篩選的話要做以下動作 -->
           <ul class="list-group list-group-flush">
                <li class="fw-bolder list-group-item ">商品名稱: <?= $rows[0]["pro_name"] ?></li>
@@ -195,12 +206,25 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                               </div>
                          </div>
                     <?php endforeach; ?>
-
+                    <div class="py-2 text-end">
+                         第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
+                    </div>
 
 
 
 
                <?php else : ?>
+                    <nav aria-label="Page navigation example">
+                         <ul class="pagination">
+                              <?php for ($i = 1; $i <= $page_count; $i++) : ?>
+                                   <li class="page-item <?php if ($i == $p) echo "active" ?>">
+                                        <a class="page-link" href="index.php?id_type=coupon_id&id=<?= $id ?>&p=<?= $i ?>&current=coupon_valid_product"><?= $i ?></a>
+                                   </li>
+                              <?php endfor ?>
+                         </ul>
+
+
+                    </nav>
                     <h3><?= $rows[0]["name"] ?></h3>
                     <ul class="list-group list-group-flush">
                          <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?> %</li>
@@ -221,7 +245,9 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                               <?php endforeach; ?>
                          </div>
                     </div>
-
+                    <div class="py-2 text-end">
+                         第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
+                    </div>
 
                </div>
           </div>

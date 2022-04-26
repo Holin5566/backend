@@ -111,16 +111,18 @@ $genderList = array("男性", "女性", "隱藏");
                 <input type="hidden" name="current" value="comment_filter">
                 <button type="submit" class="btn btn-primary">篩選</button>
             </div>
-            <div class="col">
-                <?php
-                $title = "新增評論";
-                $formType = "post-comment";
-                require("../components/post-offcanvas.php") ?>
-            </div>
+
         </div>
 
     </fieldset>
+
 </form>
+<div class="col">
+    <?php
+    $title = "新增評論";
+    $formType = "post-comment";
+    require("../components/post-offcanvas.php") ?>
+</div>
 
 <!-- 篩選product -->
 <!-- 篩選product -->
@@ -129,7 +131,7 @@ $genderList = array("男性", "女性", "隱藏");
 </style>
 <?php if ($id_type == "product" & $id != "") : ?>
 <div class="row mb-3">
-    <h5 class="col-2">篩選條件 :<strong> <?= $id_type ?> # <?= $id ?></strong></h5>
+    <h5 class="col-3">篩選條件 :<strong> <?= $id_type ?> # <?= $id ?></strong></h5>
     <p class="col-2">
         <a href="http://localhost:8080/project/page/index.php?id_type&id&current=comment_filter">清空本次條件</a>
 

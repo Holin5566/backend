@@ -76,7 +76,7 @@
     </div>
     <div class="accordion-item">
         <h2 class="accordion-header" id="aside-coupon-title">
-            <button class="accordion-button collapsed ps-5" type="button" data-bs-toggle="collapse"
+            <button class="accordion-button collapsed ps-5" type="button" data-bs-toggle="collapse" 5
                 data-bs-target="#aside-coupon-control" aria-expanded="false" aria-controls="aside-coupon-control">
                 優惠券管理
             </button>
@@ -87,8 +87,9 @@
                 <ul class="list-group">
                     <li class="list-group-item"><a href="../page/index.php?current=coupon">優惠券一覽</a></li>
                     <li class="list-group-item"><a href="../page/index.php?current=coupon-block">優惠券一覽(方塊)</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_product">優惠券篩選</a>
-                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_class">優惠券適用課程</a>
+                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_product">優惠券適用商品</a>
+                    <li class="list-group-item"><a href="../page/index.php?current=coupon_valid_class
+                            ">優惠券適用課程</a>
                     </li>
                 </ul>
             </div>

@@ -40,7 +40,7 @@ if (isset($_GET["current"])) {
                 <?php require_once("../layout/aside.php") ?>
             </div>
             <div class="col-10 border-start ">
-                <div class=" row justify-content-center p-5">
+                <div class=" row justify-content-center p-3">
                     <?php require_once("./$currentPage" . ".php") ?>
 
                 </div>

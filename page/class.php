@@ -66,7 +66,6 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <th>編號</th>
             <th><img style="width: 1.5rem;" src="../img/icon/user.png" alt="">課程名稱</th>
             <th><img style="width: 1.5rem;" src="../img/icon/credit-card.png" alt="">價格</th>
-            <th><img style="width: 1.5rem;" src="../img/icon/message (1).png" alt="">課程簡介</th>
             <th><img style="width: 1.5rem;" src="../img/icon/calendar.png" alt="">日期</th>
             <th><img style="width: 1.5rem;" src="../img/icon/message (1).png" alt="">時長</th>
             <th>Valid</th>
@@ -79,21 +78,27 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <tbody>
         <?php foreach ($rows as $row) : ?>
         <tr>
-            <th scope="row"><?= $row["id"] ?></th>
+            <th scope="row"># <?= $row["id"] ?></th>
             <td><?= $row["name"] ?></td>
             <td><?= $row["price"] ?></td>
             <td><?= $row["date"] ?></td>
             <td><?= $row["duration"] ?> h</td>
             <td><?= $row["valid"] ?></td>
             <td> </td>
+            <td> </td>
 
         </tr>
         <tr>
-            <td colspan="5" class="description"><?= $row["description"] ?></td>
-            <td colspan="2" class="description"><a type="button" class="btn-sm btn-warning"
-                    href="/project/api/class/edit_class.php?id=<?= $row["id"] ?>">編輯</a>
-                <a type="button" class="btn-sm btn-danger" class="btn btn-danger text-white"
-                    href="/project/api/class/delete_class.php?id=<?= $row["id"] ?>">刪除</a>
+            <td><img style="width: 1.5rem;" src="../img/icon/message (1).png" alt=""></td>
+            <td colspan="3" class="description"><?= $row["description"] ?></td>
+            <td colspan="3" class="description">
+                <?php
+          $edit_type = "edit-class";
+          require("../components/edit-modal.php") ?>
+                <button class="btn-sm btn-danger">
+                    <a class="btn-sm btn-danger text-white"
+                        href="/project/api/class/delete_class.php?id=<?= $row["id"] ?>">刪除</a>
+                </button>
             </td>
 
         </tr>

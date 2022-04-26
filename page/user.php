@@ -19,7 +19,7 @@ $page_count = CEIL($total / $per_page);
 ?>
 <h2>會員一覽</h2>
 <table class="table table-striped table-hover my-3">
-    <thead>
+    <thead class="text-nowrap">
         <tr>
             <th>#</th>
             <th class="img-fluid rounded-start" style="max-width:25px">姓名</th>
@@ -52,26 +52,29 @@ $page_count = CEIL($total / $per_page);
             <td><?= $row["createTime"] ?></td>
             <td><?= $row["valid"] ?></td>
             <td></td>
-            
-        </tr>  
+
+        </tr>
         <tr>
-        <td colspan="6" class="text-end">
+            <td colspan="6" class="text-end">
                 <button type="button" class="btn-sm btn-info ">
-                    <a class="text-white" href="http://localhost:8080/project/page/index.php?id_type=user&id=<?= $row["id"] ?>&current=user-favorite2">詳細資訊</a></button>
-                <button type="button" class="btn-sm btn-warning ">
-                    <a class="text-white" href="../components/edit-user.php?id=<?= $row["id"] ?>">編輯</a></button>
+                    <a class="text-white"
+                        href="http://localhost:8080/project/page/index.php?id_type=user&id=<?= $row["id"] ?>&current=user-favorite2">詳細資訊</a></button>
+                <?php
+                    $edit_type = "edit-coupon";
+                    require("../components/edit-modal.php") ?>
                 <button type="button" class="btn-sm btn-danger ">
                     <a class="text-white" href="../components/delete-user.php?id=<?= $row["id"] ?>">刪除</a></button>
             </td>
             <td> </td>
-        </tr>          
+        </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
 <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-                <li class="page-item <?php if ($i == $p) echo "active" ?>"><a class="page-link" href="index.php?current=user&p=<?= $i ?>"><?= $i ?></a></li>
-            <?php endfor ?>
-        </ul>
+    <ul class="pagination">
+        <?php for ($i = 1; $i <= $page_count; $i++) : ?>
+        <li class="page-item <?php if ($i == $p) echo "active" ?>"><a class="page-link"
+                href="index.php?current=user&p=<?= $i ?>"><?= $i ?></a></li>
+        <?php endfor ?>
+    </ul>
 </nav>

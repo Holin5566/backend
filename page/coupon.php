@@ -145,7 +145,7 @@ $page_count = CEIL($total / $per_page);
 
                     <button type="button" class="btn-sm btn-info ">
                         <a class="text-white"
-                            href="/project/page/index.php?id_type=coupon_id&id=<?= $row["id"] ?>&current=coupon_valid_product">詳細資訊</a></button>
+                            href="/project/page/index.php?id_type=coupon_id&id=<?= $row["id"] ?>&current=coupon_valid_product">適用商品</a></button>
                     <?php
                               $edit_type = "edit-coupon";
                               require("../components/edit-modal.php") ?>

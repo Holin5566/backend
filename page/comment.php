@@ -36,7 +36,9 @@ $i = 1;
             <td><?= $row["score"] ?></td>
             <td><?= $row["createTime"] ?></td>
             <td class="text-center">
-                <button type="button" class="btn-sm btn-success">詳細</button>
+                <button type="button" class="btn-sm btn-success"><a
+                        href="../page/index.php?id_type=user&id=<?= $row["id"] ?>&current=comment_filter"
+                        class="btn-sm btn-success">查看作者</a></button>
                 <button type="button" class="btn-sm btn-warning">隱藏</button>
                 <button type="button" class="btn-sm btn-danger">刪除</button>
             </td>

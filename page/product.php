@@ -11,24 +11,24 @@ if (!isset($_GET["p"])) {
 }
 
 // 價格升降冪
-if(!isset($_GET["type"])){
-    $type=3;
-}else{
-$type=$_GET["type"];
+if (!isset($_GET["type"])) {
+    $type = 3;
+} else {
+    $type = $_GET["type"];
 }
-  
-switch($type){
-    case"1":
-        $order="price ASC";
+
+switch ($type) {
+    case "1":
+        $order = "price ASC";
         break;
-    case"2":
-        $order="price DESC";
+    case "2":
+        $order = "price DESC";
         break;
-    case"3":
-        $order="id ASC";
+    case "3":
+        $order = "id ASC";
         break;
     default:
-        $order="id ASC";
+        $order = "id ASC";
 }
 
 
@@ -58,8 +58,12 @@ $launchedList = array("NO", "YES");
 
 <!-- 價格高低 -->
 <div class="text-end">
-    <a class="btn-sm btn-info text-white text-decoration-none <?php if($type==1)echo "active" ?>" href="index.php?current=product&type=1">由價低至高</a>
-    <a class="btn-sm btn-info text-white text-decoration-none<?php if($type==2)echo "active" ?>" href="index.php?current=product&type=2">由價高至低</a>
+    <a href="../page/index.php?current=product-card"><img src="../img/icon/sections.png" alt="sections.png" class="mx-3"
+            style="width:1.5rem;"></a>
+    <a class="btn-sm btn-info text-white text-decoration-none <?php if ($type == 1) echo "active" ?>"
+        href="index.php?current=product&type=1">由價低至高</a>
+    <a class="btn-sm btn-info text-white text-decoration-none<?php if ($type == 2) echo "active" ?>"
+        href="index.php?current=product&type=2">由價高至低</a>
 </div>
 
 <div class="py-2 text-end">
@@ -67,11 +71,11 @@ $launchedList = array("NO", "YES");
 </div>
 
 <?php $count = 1 ?>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col"></th>
-            <th scope="col">#</th>
+            <th scope="col">編號</th>
             <th scope="col">名稱</th>
             <th scope="col">價格</th>
             <th scope="col" class="text-nowrap">配送方式</th>
@@ -102,7 +106,8 @@ $launchedList = array("NO", "YES");
                 <span class="text-muted"><small><?= $row["description"] ?></small></span>
             </td>
             <td colspan="4" class="text-center">
-                <button type="button" class="btn-sm btn-success"><a class="text-light text-decoration-none" href="http://localhost:8080/project/page/index.php?id_type=product&id=<?=$row["id"]?>&current=comment_filter">詳細</a></button>
+                <button type="button" class="btn-sm btn-success"><a class="text-light text-decoration-none"
+                        href="http://localhost:8080/project/page/index.php?id_type=product&id=<?= $row["id"] ?>&current=comment_filter">評論</a></button>
                 <?php
                     $edit_type = "edit-product";
                     require("../components/edit-modal.php") ?>

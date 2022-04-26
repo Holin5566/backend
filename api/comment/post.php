@@ -11,7 +11,7 @@ $user = $_POST["userId"];
 $product = $_POST["productId"];
 $content = $_POST["content"];
 $score = $_POST["score"];
-$createTime = date("Y/m/d/H/i/s");
+$createTime = date("Y/m/d-H:i:s");
 
 
 echo "新增成功";
@@ -21,8 +21,9 @@ VALUES ('$user', '$product', '$content','$score','$createTime')
 ";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<script>alert('新增資料完成!');location.href=document.referrer;</script>;";
+    // echo "<script>alert('新增資料完成!');location.href=document.referrer;</script>;";
     // echo "<script>alert('新增資料完成!');</script>;";
+    echo "新增資料完成";
 } else {
     echo "新增資料錯誤: " . $conn->error;
 }

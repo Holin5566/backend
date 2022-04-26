@@ -13,7 +13,7 @@ $total = $result->num_rows;
 //與總共要計算幾筆分頁有關係
 
 //計算分頁
-$per_page = 4;
+$per_page = 6;
 $start = ($p - 1) * $per_page;
 $sql = "SELECT * FROM coupon  LIMIT $start,$per_page";
 $result = $conn->query($sql);
@@ -31,10 +31,13 @@ $page_count = CEIL($total / $per_page);
 ?>
 
 
-<h3>優惠券一覽(方塊)</h3>
-<div class="row">
+<h3>優惠券一覽</h3>
+<div class="text-end">
+     <a href="../page/index.php?current=coupon"><img src="../img/icon/sections.png" alt="sections.png" class="mx-3" style="width:1.5rem;"></a>
+</div>
+<div class="row justify-content-center">
      <?php foreach ($rows as $row) : ?>
-          <div class="card m-3" style="max-width: 540px">
+          <div class="card m-3 col-3">
                <div class="row g-0 align-items-center">
                     <div class="col-md-4 ">
                          <img src="../img/icon/coupon.png" class="img-fluid rounded-start" alt="..." />
@@ -53,7 +56,7 @@ $page_count = CEIL($total / $per_page);
                               </p>
                          </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                          <div class="btn-group" role="group" aria-label="Basic outlined example">
                               <button type="button" class="btn btn-outline-primary">
                                    <a href="http://localhost:8080/project/api/coupon/備用/form-post-edit.php?id=<?= $row["id"] ?>">編輯</a></button>

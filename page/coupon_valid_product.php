@@ -129,19 +129,20 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                               <input type="number" class="form-control" name="id" value="<?= $id ?>">
                          </div>
                     </div>
+               </div>
 
-                    <div class="col-auto">
-                         <input type="text" class="d-none" value="coupon_valid_product" name="current">
-                         <!-- 如果沒有這個，網頁會get不到東西 -->
-                    </div>
-                    <div class="col ">
-                         <button type="submit" class="btn btn-info text-white">篩選</button>
-                    </div>
+               <div class="col-auto">
+                    <input type="text" class="d-none" value="coupon_valid_product" name="current">
+                    <!-- 如果沒有這個，網頁會get不到東西 -->
+               </div>
+               <div class="col ">
+                    <button type="submit" class="btn btn-info text-white">篩選</button>
+               </div>
 
-                    <div class="col" scope="col"><?php
-                                                  $title = "新增適用商品";
-                                                  $formType = "post-couponValidProduct";
-                                                  require("../components/post-offcanvas.php") ?></div>.
+               <div class="col" scope="col"><?php
+                                             $title = "新增適用商品";
+                                             $formType = "post-couponValidProduct";
+                                             require("../components/post-offcanvas.php") ?></div>.
                </div>
           </form>
 
@@ -151,18 +152,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 
      </thead>
      <?php if (($id_type == "product_id")) : ?>
-          <!-- 頁碼 -->
-          <nav aria-label="Page navigation example">
-               <ul class="pagination">
-
-                    <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-                         <li class="page-item <?php if ($i == $p) echo "active" ?>">
-                              <a class="page-link" href="./index.php?id_type=product_id&id=<?= $id ?>&p=<?= $i ?>&current=coupon_valid_product"><?= $i ?></a>
-                         </li>
-                    <?php endfor ?>
-               </ul>
-          </nav>
-
           <!-- 如果是以商品篩選的話要做以下動作 -->
           <ul class="list-group list-group-flush">
                <li class="fw-bolder list-group-item ">商品名稱: <?= $rows[0]["pro_name"] ?></li>
@@ -174,7 +163,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                <h5 class="card-title"></h5>
                <div class=" row">
                     <?php foreach ($rows as $row) : ?>
-
                          <div class="card m-3" style="max-width: 500px">
                               <div class="row g-0 align-items-center">
                                    <div class="col-md-4 ">
@@ -194,7 +182,7 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 
                                         </div>
                                    </div>
-                                   <div class="row">
+                                   <div class="row mb-3">
                                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                                              <button type="button" class="btn btn-outline-primary">
                                                   <a href="http://localhost:8080/project/api/coupon/備用/form-post-edit.php?id=<?= $row["id"] ?>">編輯</a></button>
@@ -206,29 +194,16 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                                    </div>
                               </div>
                          </div>
-
                     <?php endforeach; ?>
-                    <div class="py-2 text-end">
-                         第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
-                    </div>
+
 
 
 
 
                <?php else : ?>
-                    <!-- 頁碼 -->
-                    <nav aria-label="Page navigation example">
-                         <ul class="pagination">
-                              <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-                                   <li class="page-item <?php if ($i == $p) echo "active" ?>">
-                                        <a class="page-link" href="./index.php?id_type=coupon_id&id=<?= $id ?>&p=<?= $i ?>&current=coupon_valid_product"><?= $i ?></a>
-                                   </li>
-                              <?php endfor ?>
-                         </ul>
-                    </nav>
                     <h3><?= $rows[0]["name"] ?></h3>
                     <ul class="list-group list-group-flush">
-                         <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?></li>
+                         <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?> %</li>
                          <li class="fw-bolder list-group-item">使用期限: <?= $rows[0]["expiry"] ?></li>
                          <li class="fw-bolder list-group-item">使用次數: <?= $rows[0]["limited"] ?></li>
                     </ul>
@@ -237,7 +212,7 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                          <div class=" row">
                               <?php foreach ($rows as $row) : ?>
                                    <div class="card m-4" style="width: 18rem;">
-                                        <img class="card-img-top" src="../img/icon/barcode.png" alt="Card image cap">
+                                        <img class="card-img-top w-100" src="../img/product/<?= $row["pro_name"] ?>.jpg" alt="<?= $row["pro_name"] ?>">
 
                                         <li class="">商品名稱: </li>
                                         <li class="list-group-item m-3"><?= $row["pro_name"] ?></li>
@@ -245,9 +220,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                                    </div>
                               <?php endforeach; ?>
                          </div>
-                    </div>
-                    <div class="py-2 text-end">
-                         第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
                     </div>
 
 

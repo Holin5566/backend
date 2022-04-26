@@ -99,42 +99,47 @@ $rows_num = $result->num_rows;
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-center">
            <?php foreach($rows as $row): ?>
-            <label class="btn btn-outline-primary" for="btncheck1"><span><?=$row["product_name"]?></span></label>
-        <?php endforeach; ?>
+            <label class="btn btn-outline-primary m-1" for="btncheck1"><span><?=$row["product_name"]?></span></label>
+                <?php endforeach; ?>
+    </div>
         <?php endif; ?>
          <!--id_type=user_id-->
       
 <?php if($id_type == "user"&& $rows_num >0): ?>
       <div class="card m-3" style="max-width: 540px">
         <div class="row g-0 align-items-center">
-            <div class="col-md-4 ">
-                <img src="../img/icon/received.png" class="img-fluid rounded-start" alt="..." />
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>會員 # <?=$rows[0]["id"]?></strong></h5>
-                    <p class="card-text mb-0"><span><strong>會員名稱 : </strong></span><?=$rows[0]["name"]?></p>
-                    <p class="card-text mb-0"><span><strong>會員電話 : </strong></span><?=$rows[0]["phone"]?></p>
-                    <p class="card-text mb-0"><span><strong>會員信箱 : </strong></span><?=$rows[0]["account"]?></p>
-                    <p class="card-text mb-0"><span><strong>會員生日 : </strong></span><?=$rows[0]["birthday"]?></p>
-                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <a href="../components/edit_order_info_filter.php?id=<?=$rows[0]["id"]?>" class="btn btn-outline-primary">編輯</a>
-                    <a href="../components/delete_order_info.php?id=<?=$rows[0]["id"]?>" class="btn btn-outline-primary">刪除</a>
-                    <button type="button" class="btn btn-outline-primary">問題</button>
-                </div>
-                <p class="text-center m-2"><small class="text-muted">註冊時間 : <?=$rows[0]["createTime"]?></small></p>
-            </div>
+                        <div class="col-md-4 ">
+                            <img src="../img/icon/received.png" class="img-fluid rounded-start" alt="..." />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>會員 # <?=$rows[0]["id"]?></strong></h5>
+                                <p class="card-text mb-0"><span><strong>會員名稱 : </strong></span><?=$rows[0]["name"]?></p>
+                                <p class="card-text mb-0"><span><strong>會員電話 : </strong></span><?=$rows[0]["phone"]?></p>
+                                <p class="card-text mb-0"><span><strong>會員信箱 : </strong></span><?=$rows[0]["account"]?></p>
+                                <p class="card-text mb-0"><span><strong>會員生日 : </strong></span><?=$rows[0]["birthday"]?></p>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <a href="../components/edit_order_info_filter.php?id=<?=$rows[0]["id"]?>" class="btn btn-outline-primary">編輯</a>
+                                <a href="../components/delete_order_info.php?id=<?=$rows[0]["id"]?>" class="btn btn-outline-primary">刪除</a>
+                                <button type="button" class="btn btn-outline-primary">問題</button>
+                            </div>
+                            <p class="text-center m-2"><small class="text-muted">註冊時間 : <?=$rows[0]["createTime"]?></small></p>
+                        </div>
         </div>
-    </div>
+        </div>
+      
+        <div class="d-flex justify-content-center">
            <?php foreach($rows as $row): ?>
-             <label class="btn btn-outline-primary" for="btncheck1">訂單 #<?=$row["id"]?></label>
-        <?php endforeach; ?>
-      <?php endif; ?>
+            <label class="btn btn-outline-primary m-1" for="btncheck1"><span># 訂單<?=$row["id"]?></span></label>
+                <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
 
       
         <?php if($id_type == "order_info" && $rows_num == 0):?>
@@ -148,7 +153,7 @@ $rows_num = $result->num_rows;
         <?php endif; ?>
 
   
-</div>
+
 
 
       

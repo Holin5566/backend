@@ -13,7 +13,7 @@ date_default_timezone_set("Asia/Taipei");
 
 $user = $_POST["user"];
 $coupon = $_POST["coupon"];
-$create_time = date('Y/m/d/H/i/s');
+$create_time = date('Y/m/d-H:is');
 $delivery = $_POST["delivery"];
 $receipent = $_POST["receipent"];
 $address = $_POST["address"];
@@ -29,7 +29,8 @@ $sql = "INSERT INTO `order_info` (`user`, `coupon`, `create_time`, `delivery`, `
 VALUES ('$user', '$coupon', '$create_time', '$delivery', '$receipent', '$pay', '$status', '$deadline', '$address');";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<script>alert('刪除資料完成!');location.href=document.referrer;</script>;";
+    // echo "<script>alert('刪除資料完成!');location.href=document.referrer;</script>;";
+    echo "新增資料完成";
 } else {
     echo "新增資料錯誤: " . $conn->error;
 }

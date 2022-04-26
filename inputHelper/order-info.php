@@ -26,15 +26,16 @@
 let keys = ["user", "coupon", "delivery", "receipent", "address", "pay", "status", "valid", "deadline"]; //example
 //
 // 宣告 欲送出的 [value]
-let userValue = ["1", "2", '3', '4', '5', '6', '7', '8', '9', '10']; //example
+let userValue = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16' , '17', '18', '19', '20']; //example
 let couponValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //example
-let deliveryValue = ['mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'mail']; //example
-let receipentValue = ['coco', 'emily', 'michael', 'john', 'tim', 'justin', 'camille', 'janny', 'katrina', 'rick']; //example
-let addressValue = ['taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting', 'taipei', 'tauyuan', 'kenting', 'taipei']; //example
-let payValue = ['cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card']; //example
-let statusValue = ['received', 'received', 'received', 'received', 'received', 'received', 'received', 'received','received','received']; //example
-let validValue = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //example
-let deadlineValue = ['1', '9', '8', '7', '6', '5', '3', '2', '1', '5']; //example
+let deliveryValue = ['mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'mail','mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'store', 'mail', 'mail']; //example
+let receipentValue = ["陳冠廷", "陳冠宇", "陳宗翰", "陳家豪", "陳彥廷", "陳承翰", "陳柏翰", "陳宇軒", "陳家瑋", "陳冠霖", "陳雅婷", "陳雅筑",
+    "陳怡君", "陳佳穎", "陳怡萱", "陳宜庭", "陳郁婷", "陳怡婷", "陳詩涵", "陳鈺婷",]; //example
+let addressValue = ['台北', '台中', '屏東', '嘉義', '彰化', '新竹', '雲林', '高雄', '台南', '花蓮', '宜蘭', '桃園', '苗栗', '台東', '澎湖','金門', '新北', '南投', '基隆', '連江']; //example
+let payValue = ['cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card','cash', 'credit card']; //example
+let statusValue = ['received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received', 'received','received','received']; //example
+let validValue = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //example
+let deadlineValue = ['1', '9', '8', '7', '6', '5', '3', '2', '1', '5','1', '9', '8', '7', '6', '5', '3', '2', '1', '5']; //example
 //
 // 宣告 目標網址
 let url = "http://localhost:8080/project/api/order_info/post.php"; //example

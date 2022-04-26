@@ -6,7 +6,7 @@ $listEn = array("product", "class", "user", "order-info", "coupon");
 <nav class="navbar navbar-light px-5 pt-3 pb-0 " style="background-color: #e3f2fd;">
     <div class="container-fluid">
 
-        <h1>FEE25後台管理</h1>
+        <h1>一個人的甜點製造所</h1>
 
         <!-- 搜索 -->
         <form class="d-flex">

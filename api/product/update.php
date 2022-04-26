@@ -22,8 +22,8 @@
 
 
     if ($conn->query($sql) === TRUE) {
-        // echo "新增資料完成";
-        header("location: ../../page/index.php?current=product");
+        echo "編輯資料完成";
+        // header("location: ../../page/index.php?current=product");
         exit;
         
     } else {

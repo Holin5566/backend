@@ -72,13 +72,13 @@ $conn->close();
     <thead>
         <tr>
             <th>編號</th>
-            <th>Coupon</th>
-            <th>Code</th>
-            <th>Discount</th>
-            <th>Valid</th>
-            <th>Class</th>
-            <th>btn1</th>
-            <th>btn2</th>
+            <th><img src="../img/icon/ticket.png" class="img-fluid rounded-start" style="max-width:25px" /> 優惠券</th>
+            <th><img src="../img/icon/barcode.png" class="img-fluid rounded-start" style="max-width:25px" /> 序號</th>
+            <th><img src="../img/icon/discount.png" class="img-fluid rounded-start" style="max-width:25px" /> 折扣%</th>
+            <th><img src="../img/icon/valid.png" class="img-fluid rounded-start" style="max-width:25px" /> 啟用</th>
+            <th>課程</th>
+            <th>編輯</th>
+            <th>刪除</th>
             <th><?php
                 $title = "新增適用課程";
                 $formType = "post-couponValidClass";

@@ -116,7 +116,7 @@ $user_count=$result->num_rows;
                 <th>編號</th>
                 <th>課程名稱</th>
                 <th>課程價格</th>
-                <th>課程簡介</th>
+                <!-- <th>課程簡介</th> -->
                 <th>課程日期</th>
                 <th>課程時長</th>
                 <th>Valid</th>

@@ -47,7 +47,7 @@ keys = ["product_id", "category_id"]; //example
 //
 // 宣告 欲送出的 [value]
 product_id = ["4", "1", "8", "2", "5", "7", "3"]; //example
-category_id = ["11", "2", "2", "2", "6", "6", "7"]; //example
+category_id = ["1", "3", "3", "3", "5", "5", "8"]; //example
 //
 // 宣告 目標網址
 

@@ -20,6 +20,7 @@ VALUES ('$name', '$price','$description','$date','$duration', 1)
 
 if ($conn->query($sql) === TRUE) {
     echo "新增資料完成";
+    header("Refresh:1 ;url= /project/page/index.php?current=class");
 } else {
     echo "新增資料錯誤: " . $conn->error;
 }

@@ -15,11 +15,16 @@ if ($id_type == "user") {
     user.account,
     user.phone,
     user.valid AS userValid,
-    product.name AS productName,
-    lessons.name AS className
-    FROM user_favorite,user,product,lessons
+    product.name AS productName
+    FROM user_favorite,user,product
     WHERE user_favorite.user_id=user.id
     AND product.id = user_favorite.product_id
+    AND $id_type.id=$id";
+
+    $classSql = "SELECT 
+    FROM user_favorite,user,lessons
+    WHERE user_favorite.user_id=user.id
+    AND lessons.id = user_favorite.class_id
     AND $id_type.id=$id";
 } elseif ($id_type == "product_id") {
     $sql = "SELECT user_favorite.*,
@@ -33,9 +38,14 @@ if ($id_type == "user") {
      user.phone,
      user.valid AS userValid
     FROM user_favorite,user,product
-    WHERE product.id = user_favorite.product_id
     AND user_favorite.user_id=user.id
     AND $id_type=$id";
+
+    $classSql = "SELECT 
+FROM user_favorite,user,lessons
+WHERE user_favorite.user_id=user.id
+AND lessons.id = user_favorite.class_id
+AND $id_type.id=$id";
 };
 
 
@@ -68,7 +78,7 @@ $rowsLength = $result->num_rows;
                 </div>
 
                 <div class="col-auto">
-                    <input type="text" class="d-none" value="user-favorite2" name="current">
+                    <input type="text" class="d-none" value="user-favorite" name="current">
                     <!-- 如果沒有這個，網頁會get不到東西 -->
                 </div>
                 <div class="col ">
@@ -99,19 +109,19 @@ $rowsLength = $result->num_rows;
         </div>
 
     </div>
-    <h3 class="text-center"><?= $rows[0]["userName"] ?> 的收藏 :</h3>
+    <h3 class="text-center"><?= $rows[0]["userName"] ?> 的商品收藏 :</h3>
     <h5 class="card-title"></h5>
     <div class=" row justify-content-center">
         <?php foreach ($rows as $row) : ?>
-        <?php if ($row["class_id"] == 0) : ?>
+        <?php if ($row["class_id"] != 0) : ?>
         <div class="card col-3 m-3" style="max-width: 500px">
             <div class="row g-0 align-items-center">
-                <div class="col ">
-                    <img class="w-100" src="../img/product/<?= $row["productName"] ?>.jpg" alt="">
+                <div class="col">
+                    <img class="w-100" src="../img/icon/baker.png" alt="">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <p class="card-text mb-0"><span><strong>產品 :</strong></span><?= $row["productName"] ?></p>
+                        <p class="card-text mb-0"><span><strong>課程 : </strong></span><?= $row["className"] ?></p>
                     </div>
                 </div>
             </div>
@@ -120,11 +130,11 @@ $rowsLength = $result->num_rows;
         <div class="card m-3" style="max-width: 500px">
             <div class="row g-0 align-items-center">
                 <div class="col ">
-                    <img class="w-100" src="../img/icon/hand-made.png" alt="">
+                    <img class="w-100" src="../img/product/<?= $row["productName"] ?>.jpg" alt="">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <p class="card-text mb-0"><span><strong>課程 : </strong></span><?= $row["className"] ?></p>
+                        <p class="card-text mb-0"><span><strong>產品 :</strong></span><?= $row["productName"] ?></p>
                     </div>
                 </div>
             </div>

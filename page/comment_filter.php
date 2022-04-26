@@ -9,7 +9,7 @@ if (!isset($_GET["p"])) {
     $p = $_GET["p"];
 }
 
-$per_page = 6;
+$per_page = 10;
 $start = ($p - 1) * $per_page;
 
 
@@ -68,7 +68,7 @@ if ($id_type == "product" & $id != "") {
     $total = $result->num_rows;
     $page_count = CEIL($total / $per_page);
 
-    $sqlSELECT = "SELECT comment.*,product.name AS proName,user.name AS userName";
+    $sqlSELECT = "SELECT comment.*,product.name AS proName,user.name AS userName,product.id AS proId";
     $sqlWHERE = "WHERE comment.product=product.id AND comment.user=user.id LIMIT $start, $per_page";
 }
 
@@ -178,8 +178,11 @@ $genderList = array("男性", "女性", "隱藏");
             <div class="row p-3">
                 <p class="card-text border p-2 bg-light px-3"><?= $row["content"] ?></p>
                 <div class="btn-group  mb-1 text-center" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-outline-primary">訂單</button>
-                    <button type="button" class="btn btn-outline-primary">收藏</button>
+                    <button type="button" class="btn btn-outline-primary"><a
+                            href="../page/index.php?id_type=user&id=<?= $row["user"] ?>&current=order-item-filter">訂單</a>
+                    </button>
+                    <button type="button" class="btn btn-outline-primary"><a
+                            href="../page/index.php?id_type=user&id=<?= $row["user"] ?>&current=user-favorite">收藏</a></button>
                     <button type="button" class="btn btn-outline-primary">回報</button>
                 </div>
             </div>
@@ -237,7 +240,7 @@ $genderList = array("男性", "女性", "隱藏");
             </div>
             <div class="col">
                 <div class="card-body py-0">
-                    <p class="card-text mb-1">商品 : <?= $row["productName"] ?></p>
+                    <p class="card-text mb-1">商品 : <?= $row["productName"] ?> # <?= $row["productId"] ?></p>
                     <p class="card-text my-3">評價 :
 
                         <?php
@@ -254,8 +257,8 @@ $genderList = array("男性", "女性", "隱藏");
             <div class="row p-3">
                 <p class="card-text border p-2 bg-light px-3"><?= $row["content"] ?></p>
                 <div class="btn-group  mb-1 text-center" role="group" aria-label="Basic outlined example">
-                    <button type="button" class="btn btn-outline-primary">訂單</button>
-                    <button type="button" class="btn btn-outline-primary">收藏</button>
+                    <button type="button" class="btn btn-outline-primary"><a
+                            href="../page/index.php?id_type=product_id&id=<?= $row["productId"] ?>&current=user-favorite">有誰收藏</a></button>
                     <button type="button" class="btn btn-outline-primary">回報</button>
                 </div>
             </div>
@@ -297,7 +300,13 @@ $genderList = array("男性", "女性", "隱藏");
             <td><?= $row["score"] ?></td>
             <td><?= $row["createTime"] ?></td>
             <td class="text-center">
-                <button type="button" class="btn-sm btn-success">詳細</button>
+
+                <button type="button" class="btn-sm btn-success"><a
+                        href="../page/index.php?id_type=product&id=<?= $row["proId"] ?>&current=comment_filter"
+                        class="btn-sm btn-success">查看商品</a></button>
+                <button type="button" class="btn-sm btn-success"><a
+                        href="../page/index.php?id_type=user&id=<?= $row["id"] ?>&current=comment_filter"
+                        class="btn-sm btn-success">查看作者</a></button>
                 <button type="button" class="btn-sm btn-warning">隱藏</button>
                 <button type="button" class="btn-sm btn-danger">刪除</button>
             </td>

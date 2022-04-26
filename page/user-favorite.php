@@ -38,14 +38,15 @@ if ($id_type == "user") {
      user.phone,
      user.valid AS userValid
     FROM user_favorite,user,product
-    AND user_favorite.user_id=user.id
+    WHERE user.id = user_favorite.user_id
+AND user_favorite.product_id=product.id
     AND $id_type=$id";
 
     $classSql = "SELECT 
-FROM user_favorite,user,lessons
-WHERE user_favorite.user_id=user.id
-AND lessons.id = user_favorite.class_id
-AND $id_type.id=$id";
+    FROM user_favorite,user,lessons
+    WHERE user_favorite.user_id=user.id
+    AND lessons.id = user_favorite.class_id
+    AND $id_type.id=$id";
 };
 
 
@@ -113,7 +114,7 @@ $rowsLength = $result->num_rows;
     <h5 class="card-title"></h5>
     <div class=" row justify-content-center">
         <?php foreach ($rows as $row) : ?>
-        <?php if ($row["class_id"] != 0) : ?>
+        <?php if ($row["class_id"] < 0) : ?>
         <div class="card col-3 m-3" style="max-width: 500px">
             <div class="row g-0 align-items-center">
                 <div class="col">

@@ -1,14 +1,6 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 
-if (!isset($_GET["p"])) {
-     $p = 1;
-} else {
-     $p = $_GET["p"];
-}
-
-
-
 if (isset($_GET["id_type"]) && isset($_GET["id"])) {
      $id_type = $_GET["id_type"];
      $id = $_GET["id"];
@@ -23,50 +15,28 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
      if ($rowCount > 0) {
           $id_type = $_GET["id_type"];
           $id = $_GET["id"];
-
-          if (!isset($_GET["p"])) {
-               $p = 1;
-          } else {
-               $p = $_GET["p"];
-          }
-
           $sql = "SELECT coupon_valid_product. * , 
-          product.name AS pro_name  
-          FROM product,coupon_valid_product,coupon 
-          WHERE coupon.id=coupon_valid_product.coupon_id 
-          AND product.id=coupon_valid_product.product_id 
-          AND $id_type=$id ";
-          $result = $conn->query($sql);
-          $total = $result->num_rows;
-
-
-          $per_page = 4;
-          $start = ($p - 1) * $per_page;
-
-          $sql = "SELECT coupon_valid_product. * , 
-          -- 以什麼資料夾為基準↑
-          product.name AS pro_name ,
-          -- 因為coupon 與 product 兩個檔案有相同的name所以我設定product的name 變更為 pro_name
-          coupon.name, 
-          coupon.discount,
-          coupon.expiry,
-          coupon.code, 
-          coupon.limited,
-          coupon.valid, 
-          product.price,
-          product.inventory ,
-          product.createTime 
-          -- 以上四個是從coupon 與 product 裡個檔案中我要拿出來加入coupon_valid_product的資料
-          FROM product,coupon_valid_product,coupon 
-          -- 我要關聯的資料
-          WHERE coupon.id=coupon_valid_product.coupon_id 
-          AND product.id=coupon_valid_product.product_id 
-          -- 將這些資料合併的基準是什麼以上面的方式呈現
-          AND $id_type=$id  LIMIT $start, $per_page ";
-
+    -- 以什麼資料夾為基準↑
+    product.name AS pro_name ,
+    -- 因為coupon 與 product 兩個檔案有相同的name所以我設定product的name 變更為 pro_name
+    coupon.name, 
+    coupon.discount,
+    coupon.expiry,
+    coupon.code, 
+    coupon.limited,
+    coupon.valid, 
+    product.price,
+    product.inventory ,
+    product.createTime 
+    -- 以上四個是從coupon 與 product 裡個檔案中我要拿出來加入coupon_valid_product的資料
+    FROM product,coupon_valid_product,coupon 
+    -- 我要關聯的資料
+    WHERE coupon.id=coupon_valid_product.coupon_id 
+    AND product.id=coupon_valid_product.product_id 
+    -- 將這些資料合併的基準是什麼以上面的方式呈現
+    AND $id_type=$id ";
           $result = $conn->query($sql);
           $rows = $result->fetch_all(MYSQLI_ASSOC);
-          $page_count = CEIL($total / $per_page);
      } else {
 
           echo  "$id_type # $id 資料為空";
@@ -108,8 +78,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 <!-- 清單 -->
 <h2>優惠券適用商品</h2>
 <table class="table">
-
-
      <thead>
           <form action="../page/index.php">
                <!-- 功能為導去哪一個網址 -->
@@ -151,18 +119,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 
      </thead>
      <?php if (($id_type == "product_id")) : ?>
-          <!-- 頁碼 -->
-          <nav aria-label="Page navigation example">
-               <ul class="pagination">
-
-                    <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-                         <li class="page-item <?php if ($i == $p) echo "active" ?>">
-                              <a class="page-link" href="./index.php?id_type=product_id&id=<?= $id ?>&p=<?= $i ?>&current=coupon_valid_product"><?= $i ?></a>
-                         </li>
-                    <?php endfor ?>
-               </ul>
-          </nav>
-
           <!-- 如果是以商品篩選的話要做以下動作 -->
           <ul class="list-group list-group-flush">
                <li class="fw-bolder list-group-item ">商品名稱: <?= $rows[0]["pro_name"] ?></li>
@@ -174,7 +130,6 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                <h5 class="card-title"></h5>
                <div class=" row">
                     <?php foreach ($rows as $row) : ?>
-
                          <div class="card m-3" style="max-width: 500px">
                               <div class="row g-0 align-items-center">
                                    <div class="col-md-4 ">
@@ -206,26 +161,13 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                                    </div>
                               </div>
                          </div>
-
                     <?php endforeach; ?>
-                    <div class="py-2 text-end">
-                         第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
-                    </div>
+
 
 
 
 
                <?php else : ?>
-                    <!-- 頁碼 -->
-                    <nav aria-label="Page navigation example">
-                         <ul class="pagination">
-                              <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-                                   <li class="page-item <?php if ($i == $p) echo "active" ?>">
-                                        <a class="page-link" href="./index.php?id_type=coupon_id&id=<?= $id ?>&p=<?= $i ?>&current=coupon_valid_product"><?= $i ?></a>
-                                   </li>
-                              <?php endfor ?>
-                         </ul>
-                    </nav>
                     <h3><?= $rows[0]["name"] ?></h3>
                     <ul class="list-group list-group-flush">
                          <li class="fw-bolder list-group-item">折扣: <?= $rows[0]["discount"] ?></li>
@@ -246,17 +188,12 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                               <?php endforeach; ?>
                          </div>
                     </div>
-                    <div class="py-2 text-end">
-                         第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
-                    </div>
 
 
                </div>
           </div>
           </div>
      <?php endif; ?>
-
-
 
 </table>
 <!-- <div class="col-auto">

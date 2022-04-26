@@ -12,5 +12,3 @@ if ($conn->connect_error) {
 } else {
     // echo "<script>alert('連結小專DB');</script>";
 }
-
-session_start();

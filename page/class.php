@@ -134,10 +134,12 @@ $user_count = $result->num_rows;
                 <th><img src="../img/icon/time.png" class="img-fluid rounded-start"
                         style="max-width:25px" /> 課程時長</th>
                 <th>Valid</th>
-                <th scope="col"></?php
+                <!-- <th scope="col"></?php
                             $title = "新增課程";
                             $formType = "post-class";
-                            require("../components/post-offcanvas.php") ?></th>
+                            require("../components/post-offcanvas.php") ?></th> -->
+                <th><a href="/project/api/class/create_class.php"><img src="../img/icon/plus.png" class="img-fluid rounded-start"
+                        style="max-width:25px" /> </a></th>
             </tr>
     </thead>
     <tbody>

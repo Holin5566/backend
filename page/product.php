@@ -80,16 +80,16 @@ $launchedList = array("NO", "YES");
                 <img src="../img/icon/cake.png" alt=""  class="me-2" style="width:1.4rem;">名稱
             </th>
             <th scope="col"></th>
-            <th scope="col" class="text-nowrap">
+            <th scope="col" class="text-nowrap text-center">
                 <img src="../img/icon/price-tag.png" alt="" class="me-2" style="width:1.4rem;">價格
             </th>
-            <th scope="col" class="text-nowrap">
+            <th scope="col" class="text-nowrap text-center">
                 <img src="../img/icon/delivery-truck.png" alt=""  class="me-2" style="width:1.4rem;">配送方式
             </th>
-            <th scope="col" class="text-nowrap">
+            <th scope="col" class="text-nowrap text-center">
                 <img src="../img/icon/packages.png" alt=""  class="me-2" style="width:1.4rem;">庫存
             </th>
-            <th scope="col" class="text-nowrap">
+            <th scope="col" class="text-nowrap text-center">
                 <img src="../img/icon/stand.png" alt=""  class="me-2" style="width:1.4rem;">上/下架
             </th>
             <th scope="col"><?php

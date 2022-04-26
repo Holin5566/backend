@@ -22,12 +22,12 @@ $launched = $_POST["launched"];
 // $valid = $_POST["valid"];
 
 
-$checkSql = "SELECT * FROM product WHERE name=$name AND price=$price ";
-// $check = $conn->query($checkSql)->num_rows;
-// if ($check > 0) {
-//     echo "資料已存在";
-//     exit;
-// }
+$checkSql = "SELECT * FROM product WHERE price = $price AND product.name = '$name'";
+$check = $conn->query($checkSql)->num_rows;
+if ($check > 0) {
+    echo "資料已存在";
+    exit;
+}
 
 
 $sql = "INSERT INTO product (name, price, express, createTime, description, inventory, launched, valid)

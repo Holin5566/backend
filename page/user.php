@@ -16,10 +16,17 @@ $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 $page_count = CEIL($total / $per_page);
+
+$validList = array("黑名單", "白名單")
 ?>
+
 <h2>會員一覽</h2>
+<div class="text-end">
+    <a href="../page/index.php?current=user-card"><img src="../img/icon/menu.png" alt="sections.png" class="mx-3"
+            style="width:1.5rem;"></a>
+</div>
 <table class="table table-striped table-hover my-3">
-    <thead>
+    <thead class="text-nowrap">
         <tr>
             <th>#</th>
             <th class="img-fluid rounded-start" style="max-width:25px">姓名</th>
@@ -30,7 +37,7 @@ $page_count = CEIL($total / $per_page);
             <th class="img-fluid rounded-start" style="max-width:25px">電話</th>
             <!-- <th class="img-fluid rounded-start" style="max-width:25px">照片</th> -->
             <th class="img-fluid rounded-start" style="max-width:25px">建立時間</th>
-            <th class="img-fluid rounded-start" style="max-width:25px">黑名單</th>
+            <th class="img-fluid rounded-start" style="max-width:25px">啟用</th>
             <th scope="col"><?php
                             $title = "新增會員";
                             $formType = "post-user";
@@ -44,27 +51,26 @@ $page_count = CEIL($total / $per_page);
             <td># <?= $row["id"] ?></td>
             <td><?= $row["name"] ?></td>
             <td><?= $row["account"] ?></td>
-            <!-- <td><?= $row["password"] ?></td>
-                    <td><?= $row["gender"] ?></td>
-                    <td><?= $row["birthday"] ?></td> -->
+            <!-- <td></?= $row["password"] ?></td>
+                    <td></?= $row["gender"] ?></td>
+                    <td></?= $row["birthday"] ?></td> -->
             <td><?= $row["phone"] ?></td>
             <!-- <td><?= $row["photo"] ?></td> -->
             <td><?= $row["createTime"] ?></td>
-            <td><?= $row["valid"] ?></td>
-            <td></td>
-            
-        </tr>  
-        <tr>
-        <td colspan="6" class="text-end">
+            <td><?= $validList[$row["valid"]] ?></td>
+            <td colspan="1" class="text-end">
                 <button type="button" class="btn-sm btn-info ">
-                    <a class="text-white" href="http://localhost:8080/project/page/index.php?id_type=user&id=<?= $row["id"] ?>&current=user-favorite2">詳細資訊</a></button>
-                <button type="button" class="btn-sm btn-warning ">
-                    <a class="text-white" href="../components/edit-user.php?id=<?= $row["id"] ?>">編輯</a></button>
+                    <a class="text-white"
+                        href="http://localhost:8080/project/page/index.php?id_type=user&id=<?= $row["id"] ?>&current=user-favorite2">詳細資訊</a></button>
+                <?php
+                    $edit_type = "edit-coupon";
+                    require("../components/edit-modal.php") ?>
                 <button type="button" class="btn-sm btn-danger ">
                     <a class="text-white" href="../components/delete-user.php?id=<?= $row["id"] ?>">刪除</a></button>
             </td>
-            <td> </td>
-        </tr>          
+
+        </tr>
+
         <?php endforeach; ?>
     </tbody>
 </table>

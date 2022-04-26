@@ -12,6 +12,13 @@ $coupon = $_POST["coupon"];
 $class = $_POST["class"];
 // $valid = $_POST["valid"];
 
+$checkSql = "SELECT * FROM coupon_valid_class WHERE coupon=$coupon AND class=$class ";
+$check = $conn->query($checkSql)->num_rows;
+if ($check > 0) {
+    echo "資料已存在";
+    exit;
+}
+
 
 $sql = "INSERT INTO coupon_valid_class ( coupon, class)
 VALUES ('$coupon', '$class')
@@ -28,5 +35,3 @@ if ($conn->query($sql) === TRUE) {
 
 
 $conn->close();
-
-?>

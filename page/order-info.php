@@ -10,7 +10,7 @@ if (!isset($_GET["p"])) {
     $p = $_GET["p"];
 }
 
-$per_page = 4;
+$per_page = 5;
 $start = ($p - 1) * $per_page;
 
 //抓取資料 渲染清單
@@ -30,17 +30,6 @@ $page_count = CEIL($total / $per_page);
 ?>
 
 
-<div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-            <li class="page-item <?php if ($p == $i) echo "active"; ?> "><a class="page-link"
-                    href="../page/index.php?current=order-info&p=<?= $i ?>"><?= $i ?></a></li>
-            <?php endfor; ?>
-        </ul>
-    </nav>
-    <div>共<?= $total ?>筆資料，<?= $page_count ?>頁</div>
-</div>
 
 
 
@@ -79,10 +68,10 @@ $page_count = CEIL($total / $per_page);
                     <span class="text-muted"><small><?= $row["address"] ?></small></span>
                 </td>
                 <td colspan="2" class="text-center">
-                    <button class="btn-sm btn-success text-white text-decoration-none">
+                    <!-- <button class="btn-sm btn-success text-white text-decoration-none">
                         <a class="btn-sm btn-success text-decoration-none text-white"
-                            href="../components/order-info-list.php?id=<?= $row["id"] ?>">商品清單</a>
-                    </button>
+                            href="../components/order-info-list.php?id=</?= $row["id"] ?>">商品清單</a>
+                    </button> -->
                     <button class="btn-sm btn-success text-white text-decoration-none">
                         <a class="btn-sm btn-success text-decoration-none text-white"
                             href="../page/index.php?id_type=order_info&user&id=<?= $row["id"] ?>&current=order-item-filter">詳細</a>
@@ -128,3 +117,12 @@ $page_count = CEIL($total / $per_page);
         </tbody>
     </table>
 </div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <?php for ($i = 1; $i <= $page_count; $i++) : ?>
+        <li class="page-item <?php if ($p == $i) echo "active"; ?> "><a class="page-link"
+                href="../page/index.php?current=order-info&p=<?= $i ?>"><?= $i ?></a></li>
+        <?php endfor; ?>
+    </ul>
+</nav>
+<div class="text-center">共<?= $total ?>筆資料，<?= $page_count ?>頁</div>

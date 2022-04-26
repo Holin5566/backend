@@ -22,32 +22,23 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
 <script>
+// 禮盒 & 大甲芋泥奶茶千層蛋糕---------------------------------------------------------------------------------
+
 // 宣告 欲送出的 [key]
-let keys = ["product", "order_info", "class", "counter", "memo", "valid"]; //example
+let keys = ["user_id", "product_id", "class_id"]; //example
 //
 // 宣告 欲送出的 [value]
-let productValue = []; //example
-let order_infoValue = []; //example
-let classValue = []; //example
-let counterValue = []; //example
-let memoValue = []; //example
-let memoList = ['加辣不加蒜', '九層塔多一點', '不要胡椒粉', '加梅粉', '', '', '']; //example
-let validValue = []; //example
-let zero = [];
-//
-// 宣告 目標網址
-let url = "http://localhost:8080/project/api/order_item/post.php"; //example
+let user_id = []; //example
+let product_id = []; //example
+let class_id = []; //example
+let zero = []; //example
 
-randomNum(productValue, 100, 200);
-randomNum(classValue, 100, 5);
-randomNum(zero, 100, 0);
-productValue = [...productValue, ...zero];
-classValue = [...zero, ...classValue];
-randomNum(order_infoValue, 200, 20);
-randomNum(counterValue, 200, 5);
-randomContent(memoValue, 200, 7);
-randomContent(validValue, 200, 1);
-
+randomNum(user_id, 300, 40);
+randomNum(product_id, 150, 200);
+randomNum(class_id, 150, 5);
+randomNum(zero, 150, 0);
+product_id = [...product_id, ...zero];
+class_id = [...zero, ...class_id];
 
 function randomNum(arr, range, max) {
     for (let i = 0; i < range; i++) {
@@ -56,24 +47,16 @@ function randomNum(arr, range, max) {
     return arr;
 }
 
-function randomContent(arr, range, max) {
-    for (let i = 0; i < range; i++) {
-        arr.push(memoList[Math.floor(Math.random() * max)]);
-    }
-    return arr;
-}
+//
+// 宣告 目標網址
+let url = "http://localhost:8080/project/api/user/備用/user-favorite/user-favorite-post.php"; //example
+
 try {
     // 依序放入宣告完的變數 
-    multiInput(url, keys, productValue, order_infoValue, classValue, counterValue, memoValue,
-        validValue) //keys 順序對應 value 的放入順序
+    multiInput(url, keys, user_id, product_id, class_id) //keys 順序對應 value 的放入順序
 } catch (e) {
     sayError(e);
 };
-
-
-
-
-
 
 
 function multiInput(url, keys, ...arrs) {
@@ -101,12 +84,12 @@ function multiInput(url, keys, ...arrs) {
             data: body,
             success: function(res) {
                 info.innerText +=
-                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應: \n ${JSON.stringify(res.responseText)}\n
+                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應: \n ${JSON.stringify(res)}\n
                     ----------------------`
             },
             error: function(err) {
                 info.innerText +=
-                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應:  \n ${JSON.stringify(err.responseText)}\n
+                    `\n\n POST資料: \n ${JSON.stringify(body)} \n回應:  \n ${JSON.stringify(err)}\n
                     ----------------------`
             },
         });

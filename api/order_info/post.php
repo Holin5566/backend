@@ -13,7 +13,7 @@ date_default_timezone_set("Asia/Taipei");
 
 $user = $_POST["user"];
 $coupon = $_POST["coupon"];
-$create_time = date('Y/m/d/H/i/s');
+$create_time = date('Y/m/d-H:i:s');
 $delivery = $_POST["delivery"];
 $receipent = $_POST["receipent"];
 $address = $_POST["address"];

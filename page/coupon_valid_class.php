@@ -4,7 +4,7 @@ require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 if (isset($_GET["id_type"]) && isset($_GET["id"])) {
     $id_type = $_GET["id_type"];
     $id = $_GET["id"];
-$sql = "SELECT coupon_valid_class. * ,
+    $sql = "SELECT coupon_valid_class. * ,
 lessons.name AS class_name,  
 coupon.name 
 FROM coupon_valid_class,coupon,lessons
@@ -12,7 +12,12 @@ WHERE coupon.id=coupon_valid_class.coupon
 AND lessons.id=coupon_valid_class.class
 AND $id_type = $id";
 }else{
-$sql = "SELECT * FROM coupon_valid_class";
+$sql = "SELECT coupon_valid_class. * ,
+lessons.name AS class_name,  
+coupon.name 
+ FROM coupon_valid_class,coupon,lessons
+ WHERE coupon.id=coupon_valid_class.coupon 
+AND lessons.id=coupon_valid_class.class";
 
 }
 
@@ -41,18 +46,18 @@ $conn->close();
                 <div class="col">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">ID : </span>
-                        <input type="number" class="form-control" name="id" value="<?= $id ?>">
+                        <input type="number" class="form-control" name="id" value="<?= $id ?>" min="0">
                     </div>
                 </div>
 
-                <div class="col-auto">
-                    <input type="text" class="d-none" value="coupon_valid_class" name="current">
-                    <!-- 如果沒有這個，網頁會get不到東西 -->
-                </div>
-                <div class="col ">
-                    <button type="submit" class="btn btn-info text-white">篩選</button>
-                </div>
-        </form>
+        <div class="col-auto">
+            <input type="text" class="d-none" value="coupon_valid_class" name="current">
+            <!-- 如果沒有這個，網頁會get不到東西 -->
+        </div>
+        <div class="col ">
+            <button type="submit" class="btn btn-info text-white">篩選</button>
+        </div>
+</form>
 
 
 
@@ -66,9 +71,9 @@ $conn->close();
             <th>btn1</th>
             <th>btn2</th>
             <th><?php
-                    $title = "新增適用課程";
-                    $formType = "post-couponValidClass";
-                    require("../components/post-offcanvas.php") ?></th>
+                $title = "新增適用課程";
+                $formType = "post-couponValidClass";
+                require("../components/post-offcanvas.php") ?></th>
         </tr>
     </thead>
     <tbody>
@@ -77,8 +82,10 @@ $conn->close();
             <th scope="row"><?= $row["id"] ?></th>
             <td><?= $row["name"] ?></td>
             <td><?= $row["class_name"] ?></td>
-            <td><a class="btn btn-sm btn-warning" href="/project/api/coupon_valid_class/edit_coupon.php?id=<?= $row["id"] ?>">編輯</a></td>
-            <td><a class="btn btn-sm btn-danger" href="/project/api/coupon_valid_class/delete_coupon.php?id=<?= $row["id"] ?>">刪除</a></td>
+            <td><a class="btn btn-sm btn-warning"
+                    href="/project/api/coupon_valid_class/edit_coupon.php?id=<?= $row["id"] ?>">編輯</a></td>
+            <td><a class="btn btn-sm btn-danger"
+                    href="/project/api/coupon_valid_class/delete_coupon.php?id=<?= $row["id"] ?>">刪除</a></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

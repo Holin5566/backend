@@ -16,6 +16,14 @@ $class = $_POST["class"];
 $counter = $_POST["counter"];
 $memo = $_POST["memo"];
 
+
+$checkSql = "SELECT * FROM order_item WHERE order_info=$order_info AND product=$product AND class=$class ";
+$check = $conn->query($checkSql)->num_rows;
+if ($check > 0) {
+  echo "資料已存在";
+  exit;
+}
+
 // echo "$product, $order_info, $class, $counter, $memo";
 
 $sql = "INSERT INTO order_item ( product, order_info, class, counter, memo)
@@ -32,5 +40,3 @@ if ($conn->query($sql) === TRUE) {
 
 
 $conn->close();
-
-?>

@@ -114,11 +114,15 @@ $user_count=$result->num_rows;
     <thead>
         <tr class="text-nowrap">
                 <th>編號</th>
-                <th>課程名稱</th>
-                <th>課程價格</th>
+                <th><img src="../img/icon/class.png" class="img-fluid rounded-start"
+                        style="max-width:25px" /> 課程名稱</th>
+                <th><img src="../img/icon/price.png" class="img-fluid rounded-start"
+                        style="max-width:25px" /> 課程價格</th>
                 <!-- <th>課程簡介</th> -->
-                <th>課程日期</th>
-                <th>課程時長</th>
+                <th><img src="../img/icon/calendar.png" class="img-fluid rounded-start"
+                        style="max-width:25px" /> 課程日期</th>
+                <th><img src="../img/icon/time.png" class="img-fluid rounded-start"
+                        style="max-width:25px" /> 課程時長</th>
                 <th>Valid</th>
                 <th scope="col"></?php
                             $title = "新增課程";

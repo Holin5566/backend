@@ -76,7 +76,8 @@ $conn->close();
             <th><img src="../img/icon/barcode.png" class="img-fluid rounded-start" style="max-width:25px" /> 序號</th>
             <th><img src="../img/icon/discount.png" class="img-fluid rounded-start" style="max-width:25px" /> 折扣%</th>
             <th><img src="../img/icon/valid.png" class="img-fluid rounded-start" style="max-width:25px" /> 啟用</th>
-            <th>課程</th>
+            <th><img src="../img/icon/class.png" class="img-fluid rounded-start"
+                        style="max-width:25px" /> 課程</th>
             <th>編輯</th>
             <th>刪除</th>
             <th><?php

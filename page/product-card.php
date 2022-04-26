@@ -83,6 +83,8 @@ p {
 
 
 <div class="container-fluid row my-1 mx-auto gy-4">
+    <h2>商品一覽</h2>
+
     <div class="text-end">
         <a class="btn-sm btn-info text-white text-decoration-none <?php if ($type == 1) echo "active" ?>"
             href="index.php?current=product-card&type=1">由價低至高</a>

@@ -11,12 +11,14 @@ FROM coupon_valid_class,coupon,lessons
 WHERE coupon.id=coupon_valid_class.coupon 
 AND lessons.id=coupon_valid_class.class
 AND $id_type = $id";
-} else {
-    $sql = "SELECT coupon_valid_class. * ,
+}else{
+$sql = "SELECT coupon_valid_class. * ,
 lessons.name AS class_name,  
-coupon.name  FROM coupon_valid_class,coupon,lessons
-WHERE coupon.id=coupon_valid_class.coupon 
+coupon.name 
+ FROM coupon_valid_class,coupon,lessons
+ WHERE coupon.id=coupon_valid_class.coupon 
 AND lessons.id=coupon_valid_class.class";
+
 }
 
 
@@ -30,23 +32,23 @@ $conn->close();
 ?>
 
 <form action="../page/index.php">
-    <!-- 功能為導去哪一個網址 -->
-    <div class="row ">
-        <select name="id_type" class="form-select mb-3  col " aria-label="Default select example">
-            <option value="class" <?php if (isset($_GET["id_type"]) && $_GET["id_type"] == "class") {
-                                        echo "selected";
-                                    } ?>>課程 ID</option>
-            <option value="coupon" <?php if (isset($_GET["id_type"]) && $_GET["id_type"] == "coupon") {
-                                        echo "selected";
-                                    } ?>>優惠券 ID</option>
-            <!-- 可以使用迴圈的寫法 -->
-        </select>
-        <div class="col">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">ID : </span>
-                <input type="number" class="form-control" name="id" value="<?= $id ?>">
-            </div>
-        </div>
+            <!-- 功能為導去哪一個網址 -->
+            <div class="row ">
+                <select name="id_type" class="form-select mb-3  col " aria-label="Default select example">
+                    <option value="class" <?php if (isset($_GET["id_type"]) && $_GET["id_type"] == "class") {
+                                                    echo "selected";
+                                                } ?>>課程 ID</option>
+                    <option value="coupon" <?php if (isset($_GET["id_type"]) && $_GET["id_type"] == "coupon") {
+                                                    echo "selected";
+                                                } ?>>優惠券 ID</option>
+                    <!-- 可以使用迴圈的寫法 -->
+                </select>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">ID : </span>
+                        <input type="number" class="form-control" name="id" value="<?= $id ?>" min="0">
+                    </div>
+                </div>
 
         <div class="col-auto">
             <input type="text" class="d-none" value="coupon_valid_class" name="current">

@@ -75,10 +75,12 @@ $validList = array("黑名單", "白名單")
     </tbody>
 </table>
 <nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <?php for ($i = 1; $i <= $page_count; $i++) : ?>
-        <li class="page-item <?php if ($i == $p) echo "active" ?>"><a class="page-link"
-                href="index.php?current=user&p=<?= $i ?>"><?= $i ?></a></li>
-        <?php endfor ?>
-    </ul>
+        <ul class="pagination">
+            <?php for ($i = 1; $i <= $page_count; $i++) : ?>
+                <li class="page-item <?php if ($i == $p) echo "active" ?>"><a class="page-link" href="index.php?current=user&p=<?= $i ?>"><?= $i ?></a></li>
+            <?php endfor ?>
+        </ul>
+        <div class="py-2 text-end">
+               第<?= $p ?> 頁 , 共<?= $page_count ?>頁 , 共<?= $total ?> 筆資料
+        </div>
 </nav>

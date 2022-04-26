@@ -3,6 +3,7 @@ $currentPage = "product";
 if (isset($_GET["current"])) {
     $currentPage = $_GET["current"];
 };
+session_start();
 ?>
 
 <!DOCTYPE html>

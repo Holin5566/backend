@@ -12,7 +12,12 @@ WHERE coupon.id=coupon_valid_class.coupon
 AND lessons.id=coupon_valid_class.class
 AND $id_type = $id";
 }else{
-$sql = "SELECT * FROM coupon_valid_class";
+$sql = "SELECT coupon_valid_class. * ,
+lessons.name AS class_name,  
+coupon.name 
+ FROM coupon_valid_class,coupon,lessons
+ WHERE coupon.id=coupon_valid_class.coupon 
+AND lessons.id=coupon_valid_class.class";
 
 }
 
@@ -41,7 +46,7 @@ $conn->close();
                 <div class="col">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">ID : </span>
-                        <input type="number" class="form-control" name="id" value="<?= $id ?>">
+                        <input type="number" class="form-control" name="id" value="<?= $id ?>" min="0">
                     </div>
                 </div>
 

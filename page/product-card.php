@@ -1,10 +1,32 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . "/project-conn.php");
 
+// 分頁
 if (!isset($_GET["p"])) {
     $p = 1;
 } else {
     $p = $_GET["p"];
+}
+
+// 價格升降冪
+if (!isset($_GET["type"])) {
+    $type = 3;
+} else {
+    $type = $_GET["type"];
+}
+
+switch ($type) {
+    case "1":
+        $order = "price ASC";
+        break;
+    case "2":
+        $order = "price DESC";
+        break;
+    case "3":
+        $order = "id ASC";
+        break;
+    default:
+        $order = "id ASC";
 }
 
 $expressList = array("店取", "常溫", "低溫");
@@ -26,7 +48,7 @@ $per_page = 10;
 $page_count = CEIL($total / $per_page);
 
 $start = ($p - 1) * $per_page;
-$sql = "SELECT * FROM product WHERE valid = 1 LIMIT $start,$per_page";
+$sql = "SELECT * FROM product WHERE valid = 1 ORDER BY $order LIMIT $start,$per_page";
 
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -62,6 +84,11 @@ p {
 
 <div class="container-fluid row my-1 mx-auto gy-4">
     <div class="text-end">
+        <a class="btn-sm btn-info text-white text-decoration-none <?php if ($type == 1) echo "active" ?>"
+            href="index.php?current=product-card&type=1">由價低至高</a>
+        <a class="btn-sm btn-info text-white text-decoration-none <?php if ($type == 2) echo "active" ?>"
+            href="index.php?current=product-card&type=2">由價高至低</a>
+
         <a href="../page/index.php?current=product"><img src="../img/icon/menu.png" alt="sections.png" class="mx-3"
                 style="width:1.5rem;"></a>
     </div>
@@ -115,7 +142,7 @@ p {
                             <img src="..." class="d-block w-100" alt="...">
                         </div> -->
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -124,14 +151,14 @@ p {
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
-                    </button>
+                    </button> -->
 
                 </div>
                 <?php endif; ?>
 
                 <div class="col-md-7">
                     <div class="py-4 px-4">
-                        <h4 class="card-title fw-bold text-center mb-3"><?= $row["name"] ?></h4>
+                        <h4 class="card-title fw-bold text-center mb-3"><?= $count?>. <?= $row["name"] ?></h4>
 
                         <div class="row">
                             <div class="col-3">
@@ -195,7 +222,7 @@ p {
                             <div class="col-3">
                                 <p class="fw-bold text-nowrap">商品分類</p>
                             </div>
-                            <div class="col-9">
+                            <div class="col-9 d-flex">
                                 <?php foreach ($rowsCategory as $Category) : ?>
                                 <p><span
                                         class="badge rounded-pill bg-light text-dark border"><?= $Category["name"] ?></span>
@@ -247,7 +274,7 @@ p {
                                     <td><span
                                             class="badge rounded-pill bg-light text-dark border"><?= $Category["name"] ?></span>
                                     </td>
-                                    <?php $count++ ?>
+                                    <//?php $count++ ?>
                                     <?php endforeach; ?>
     
                                 </tr>
@@ -262,6 +289,7 @@ p {
         </div>
 
     </div>
+    <?php $count++ ?>
     <?php endforeach; ?>
 
     <!-- 分頁 -->

@@ -2,20 +2,20 @@
 require($_SERVER['DOCUMENT_ROOT'] . "/project/project-conn.php");
 
 if (isset($_GET["id_type"]) && isset($_GET["id"])) {
-     $id_type = $_GET["id_type"];
-     $id = $_GET["id"];
+    $id_type = $_GET["id_type"];
+    $id = $_GET["id"];
 
-     $sql = "SELECT coupon_valid_product. * 
+    $sql = "SELECT coupon_valid_product. * 
      FROM product,coupon_valid_product,coupon 
      WHERE coupon.id=coupon_valid_product.coupon_id 
      AND product.id=coupon_valid_product.product_id AND $id_type=$id ";
-     $resultNumRows = $conn->query($sql);
-     $rowCount = $resultNumRows->num_rows;
+    $resultNumRows = $conn->query($sql);
+    $rowCount = $resultNumRows->num_rows;
 
-     if ($rowCount > 0) {
-          $id_type = $_GET["id_type"];
-          $id = $_GET["id"];
-          $sql = "SELECT coupon_valid_product. * , 
+    if ($rowCount > 0) {
+        $id_type = $_GET["id_type"];
+        $id = $_GET["id"];
+        $sql = "SELECT coupon_valid_product. * , 
     -- 以什麼資料夾為基準↑
     product.name AS pro_name ,
     -- 因為coupon 與 product 兩個檔案有相同的name所以我設定product的name 變更為 pro_name
@@ -35,17 +35,17 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
     AND product.id=coupon_valid_product.product_id 
     -- 將這些資料合併的基準是什麼以上面的方式呈現
     AND $id_type=$id ";
-          $result = $conn->query($sql);
-          $rows = $result->fetch_all(MYSQLI_ASSOC);
-     } else {
+        $result = $conn->query($sql);
+        $rows = $result->fetch_all(MYSQLI_ASSOC);
+    } else {
 
-          echo  "$id_type # $id 資料為空";
-          exit;
-     }
+        echo  "$id_type # $id 資料為空";
+        exit;
+    }
 } else {
-     $id_type = "product_id";
-     $id = 1;
-     $sql = "SELECT coupon_valid_product. * , 
+    $id_type = "product_id";
+    $id = 1;
+    $sql = "SELECT coupon_valid_product. * , 
     product.name AS pro_name ,
     coupon.name, 
     coupon.discount,
@@ -59,8 +59,8 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
     FROM product,coupon_valid_product,coupon 
     WHERE coupon.id=coupon_valid_product.coupon_id 
     AND product.id=coupon_valid_product.product_id  ";
-     $result = $conn->query($sql);
-     $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
 }
 
 
@@ -84,11 +84,11 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
             <div class="row ">
                 <select name="id_type" class="form-select mb-3  col " aria-label="Default select example">
                     <option value="product_id" <?php if (isset($_GET["id_type"]) && $_GET["id_type"] == "product_id") {
-                                                            echo "selected";
-                                                       } ?>>商品 ID</option>
+                                                    echo "selected";
+                                                } ?>>商品 ID</option>
                     <option value="coupon_id" <?php if (isset($_GET["id_type"]) && $_GET["id_type"] == "coupon_id") {
-                                                            echo "selected";
-                                                       } ?>>Coupon ID</option>
+                                                    echo "selected";
+                                                } ?>>Coupon ID</option>
                     <!-- 可以使用迴圈的寫法 -->
                 </select>
                 <div class="col">
@@ -107,9 +107,9 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
                 </div>
 
                 <div class="col" scope="col"><?php
-                                                  $title = "新增適用商品";
-                                                  $formType = "post-couponValidProduct";
-                                                  require("../components/post-offcanvas.php") ?></div>.
+                                                $title = "新增適用商品";
+                                                $formType = "post-couponValidProduct";
+                                                require("../components/post-offcanvas.php") ?></div>.
             </div>
         </form>
 
@@ -149,7 +149,7 @@ if (isset($_GET["id_type"]) && isset($_GET["id"])) {
 
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                             <button type="button" class="btn btn-outline-primary">
                                 <a

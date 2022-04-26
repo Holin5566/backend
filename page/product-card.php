@@ -61,6 +61,8 @@ p {
 
 
 <div class="container-fluid row my-1 mx-auto gy-4">
+    <h2>商品一覽</h2>
+
     <div class="text-end">
         <a href="../page/index.php?current=product"><img src="../img/icon/menu.png" alt="sections.png" class="mx-3"
                 style="width:1.5rem;"></a>

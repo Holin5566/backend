@@ -11,24 +11,8 @@
             <div class="accordion-body p-0 text-center ">
                 <ul class="list-group ">
                     <li class="list-group-item"><a href="../page/index.php?current=product-card">商品一覽</a></li>
-                    <li class="list-group-item"><a href="../page/index.php?current=comment">評論一覽</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="aside-class-title">
-            <button class="accordion-button collapsed ps-5" type="button" data-bs-toggle="collapse"
-                data-bs-target="#aside-class-control" aria-expanded="false" aria-controls="aside-class-control">
-                課程管理
-            </button>
-        </h2>
-        <div id="aside-class-control" class="accordion-collapse collapse" aria-labelledby="aside-class-title"
-            data-bs-parent="#aside-menu">
-            <div class="accordion-body p-0 text-center">
-                <ul class="list-group">
                     <li class="list-group-item"><a href="../page/index.php?current=class">課程一覽</a></li>
+                    </li>
                     <li class="list-group-item"><a href="../page/index.php?current=comment">評論一覽</a></li>
                 </ul>
             </div>
@@ -47,7 +31,7 @@
                 <ul class="list-group">
                     <li class="list-group-item"><a href="../page/index.php?current=user-card">會員一覽</a></li>
                     <li class="list-group-item"><a
-                            href="../page/index.php?id_type=user&id=1&current=user-favorite2">會員收藏</a> </li>
+                            href="../page/index.php?id_type=user&id=1&current=user-favorite">會員收藏</a> </li>
                 </ul>
             </div>
         </div>

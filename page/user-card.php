@@ -10,7 +10,7 @@ $sql = "SELECT * FROM user ";
 $result = $conn->query($sql);
 $total = $result->num_rows;
 
-$per_page = 6;
+$per_page = 4;
 $start = ($p - 1) * $per_page;
 $sql = "SELECT * FROM user  LIMIT $start,$per_page";
 $result = $conn->query($sql);
@@ -18,7 +18,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
 $page_count = CEIL($total / $per_page);
 
-
+$genderLisr = array("男性", "女性")
 ?>
 <style>
 </style>
@@ -30,22 +30,24 @@ $page_count = CEIL($total / $per_page);
 </div>
 <div class="row justify-content-center">
     <?php foreach ($rows as $row) : ?>
-    <div class="card p-1 shadow m-3 col-3 py-3">
+    <div class="card p-1 shadow m-3 col-5 py-3">
         <div class="row g-0 align-items-start justify-content-center ">
             <div
-                class="avatar rounded-circle border border-3 col-4 overflow-hidden d-flex justify-content-center align-items-center">
+                class="avatar rounded-3 border border-3 shadow col-5 overflow-hidden d-flex justify-content-center align-items-center">
                 <img src="../img/user/<?= $row["photo"] ?>" class="w-100" alt="..." />
             </div>
             <div class="col">
                 <div class="card-body py-0">
                     <p class="card-text mb-1">用戶 : <?= $row["name"] ?></p>
                     <p class="card-text mb-1">帳戶 : <?= $row["account"] ?></p>
-                    <p class="card-text mb-2">評論 : <?= $row["phone"] ?></p>
-                    <p class="card-text mb-2">啟用 : <?= $row["valid"] ?></p>
+                    <p class="card-text mb-1">電話 : <?= $row["phone"] ?></p>
+                    <p class="card-text mb-1">性別 : <?= $genderLisr[$row["gender"]] ?></p>
+                    <p class="card-text mb-1">生日 : <?= $row["birthday"] ?></p>
+                    <p class="card-text mb-1">啟用 : <?= $row["valid"] ?></p>
                 </div>
             </div>
             <div class="row p-3">
-                <p class="card-text border p-2 bg-light px-3"><?= $row["content"] ?></p>
+                <!-- <p class="card-text border p-1 bg-light px-3"></?= $row["content"] ?></p> -->
                 <div class="btn-group  mb-1 text-center" role="group" aria-label="Basic outlined example">
                     <button type="button" class="btn btn-outline-primary">訂單</button>
                     <button type="button" class="btn btn-outline-primary">收藏</button>

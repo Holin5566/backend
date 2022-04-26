@@ -73,7 +73,7 @@ $launchedList = array("NO", "YES");
     <thead>
         <tr>
             <th scope="col"></th>
-            <th scope="col">#</th>
+            <th scope="col">編號</th>
             <th scope="col">名稱</th>
             <th scope="col">價格</th>
             <th scope="col" class="text-nowrap">配送方式</th>

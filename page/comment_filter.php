@@ -226,9 +226,53 @@ $genderList = array("男性", "女性", "隱藏");
         <p class="card-text mb-2">電話 : <span class="bg-light border px-3"> <?= $rows[0]["data02"] ?></p>
     </div>
 </div>
+<!-- 副欄位 -->
+<div class="row justify-content-center  ">
+    <?php foreach ($rows as $row) : ?>
+    <div class="card p-1 shadow m-3 col-3 py-3">
+        <div class="row g-0 align-items-start justify-content-center ">
+            <div
+                class="avatar rounded-circle border border-3 col-4 overflow-hidden d-flex justify-content-center align-items-center">
+                <img src="../img/user/<?= $row["userPhoto"] ?>" class="w-100" alt="..." />
+            </div>
+            <div class="col">
+                <div class="card-body py-0">
+                    <p class="card-text mb-1">用戶 : <?= $row["userName"] ?></p>
+                    <p class="card-text mb-1">評價 :
+
+                        <?php
+                                    for ($i = 0; $i < $row["score"]; $i++) {
+                                        echo "<img src='../img/icon/thumb-up.png' style='width: 1.5rem;' alt=''> ";
+                                    }
+                                    ?>
+                    </p>
+                    <p class="card-text mb-2">評論 : </p>
 
 
+                </div>
+            </div>
+            <div class="row p-3">
+                <p class="card-text border p-2 bg-light px-3"><?= $row["content"] ?></p>
+                <div class="btn-group  mb-1 text-center" role="group" aria-label="Basic outlined example">
+                    <button type="button" class="btn btn-outline-primary">訂單</button>
+                    <button type="button" class="btn btn-outline-primary">收藏</button>
+                    <button type="button" class="btn btn-outline-primary">回報</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <p class="text-center m-2"><small class="text-muted">建立時間 : <?= $row["createTime"] ?></small></p>
+        </div>
+    </div>
+    <?php endforeach; ?>
+    <?php else : ?>
+    <p>本次結果 : </p>
+    <p><?= $id_type ?> #<?= $id ?> : 資料為空</p>
+    <?php endif; ?>
+</div>
 
+
+<!--  -->
 <div class="row justify-content-around">
     <?php foreach ($rows as $row) : ?>
     <div class="card p-3 my-3 col-5">
